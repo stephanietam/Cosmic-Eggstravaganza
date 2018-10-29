@@ -21,7 +21,6 @@ public class IntroNextButton : MonoBehaviour {
 
     public void OnClick()
     {
-      print("This has been called.");
       if(index == lines.Length){
         SceneManager.LoadScene("FarmScene");
       }else{
