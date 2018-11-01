@@ -15,7 +15,8 @@ public class IntroNextButton : MonoBehaviour {
 
     public void Start()
     {
-      lines = System.IO.File.ReadAllLines(Application.dataPath+"/Scripts/introLines.txt");
+      TextAsset data = Resources.Load("introLines") as TextAsset;
+      lines = data.text.Split(new string[] {"\n"}, StringSplitOptions.None);
       IntroText.text = lines[index++];
     }
 
