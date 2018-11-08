@@ -6,8 +6,13 @@ namespace Assets.Scripts
     public class Creature : MonoBehaviour
     {
         public Attribute hunger;
+
         public Attribute happiness;
+
         public Attribute hygene;
+
+        public int age;
+
         public bool hatched;
 
         public Creature()
@@ -15,6 +20,7 @@ namespace Assets.Scripts
             hunger = new Attribute(10);
             happiness = new Attribute(10);
             hygene = new Attribute(10);
+            age = 0;
             hatched = false;
         }
 
@@ -56,15 +62,7 @@ namespace Assets.Scripts
         public static Creature Instance;
         void Awake()
         {
-            if (Instance == null)
-            {
-                DontDestroyOnLoad(transform.gameObject);
-                Instance = this;
-            }
-            else if (Instance != this)
-            {
-                Destroy(transform.gameObject);
-            }
+            DontDestroyOnLoad(transform.gameObject);
         }
     }
 }

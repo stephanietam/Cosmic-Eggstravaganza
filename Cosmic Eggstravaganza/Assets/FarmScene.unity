@@ -460,13 +460,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 Stars
+  m_Text: Stars
 --- !u!222 &444378169
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1264,6 +1264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65719b677703eda428ec0597d6918aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  age: 0
   hatched: 1
 --- !u!1 &1596012303
 GameObject:
@@ -1499,6 +1500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: {fileID: 0}
+  starsText: {fileID: 444378168}
+  foodText: {fileID: 2061944846}
 --- !u!4 &1755475265
 Transform:
   m_ObjectHideFlags: 0
@@ -1544,7 +1547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 199.85, y: 116}
+  m_AnchoredPosition: {x: 239.155, y: 146}
   m_SizeDelta: {x: 158.31, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1803512462
@@ -1573,7 +1576,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1629,13 +1632,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0 Food
+  m_Text: Food
 --- !u!222 &2061944847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1864,8 +1867,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7436a5ced0f73b4f9f5173abb1b8fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: 100
+  food: 0
   stars: 100
+  medicine: 0
   creatureCount: 0
   creatureObjects: []
 --- !u!4 &2137705922

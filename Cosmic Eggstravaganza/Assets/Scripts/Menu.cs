@@ -13,6 +13,7 @@ public class Menu : MonoBehaviour
 	private int currentMode;
 
 	public GameObject panel;
+
 	public Text panelTitle;
 
 	// Use this for initialization
