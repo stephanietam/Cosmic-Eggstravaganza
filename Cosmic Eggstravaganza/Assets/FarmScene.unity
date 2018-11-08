@@ -694,9 +694,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 494592831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2fb810224c402c4fbec8a85627926c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e4dcdc681b84249a274db9dcdeeefd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 2137705921}
 --- !u!1 &968724742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,13 +1173,14 @@ GameObject:
   - component: {fileID: 1489009680}
   - component: {fileID: 1489009679}
   - component: {fileID: 1489009681}
+  - component: {fileID: 1489009682}
   m_Layer: 0
   m_Name: 6a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1489009679
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1251,6 +1253,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.29537204, y: -0.073856086}
   m_Size: {x: 25.666086, y: 14.2568245}
   m_Direction: 1
+--- !u!114 &1489009682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1489009678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65719b677703eda428ec0597d6918aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hatched: 1
 --- !u!1 &1596012303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca056cacb4621f345a8a85a630f8f698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: {fileID: 0}
+  gameState: {fileID: 2137705921}
 --- !u!1 &1746748020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1457,6 +1471,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1746748020}
+--- !u!1 &1755475263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1755475265}
+  - component: {fileID: 1755475264}
+  m_Layer: 0
+  m_Name: Farm Script
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1755475264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755475263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d4242b01e619f4186e9b03198b59ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: {fileID: 0}
+--- !u!4 &1755475265
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755475263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 452.9106, y: 261.7814, z: -5.875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1803512460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,7 +1544,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 204.23, y: 115.8}
+  m_AnchoredPosition: {x: 199.85, y: 116}
   m_SizeDelta: {x: 158.31, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1803512462
@@ -1513,10 +1568,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -1642,9 +1697,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2082582952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ede1b635a160714583e358f098f5843, type: 3}
+  m_Script: {fileID: 11500000, guid: 83724b5a21dfe5343ad5388c87625a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 2137705921}
 --- !u!1 &2111504915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1792,7 +1848,7 @@ GameObject:
   - component: {fileID: 2137705921}
   m_Layer: 0
   m_Name: GameState
-  m_TagString: Untagged
+  m_TagString: GameState
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1808,6 +1864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7436a5ced0f73b4f9f5173abb1b8fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  food: 100
+  stars: 100
+  creatureCount: 0
+  creatureObjects: []
 --- !u!4 &2137705922
 Transform:
   m_ObjectHideFlags: 0
