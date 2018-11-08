@@ -2,14 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FarmScript : MonoBehaviour {
 
     public GameState gameState;
 
+    public Text starsText;
+
+    public Text foodText;
+
 	// Use this for initialization
 	void Start () {
-        Debug.Log("Started");
+        Debug.Log("Farm started");
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
     }
@@ -25,8 +30,11 @@ public class FarmScript : MonoBehaviour {
             {
                 creature.SetActive(true);
             }
-            
+
         }
+
+        starsText.text = "Stars: " + this.gameState.GetStars().ToString();
+        foodText.text = "Food: " + this.gameState.GetFood().ToString();
     }
 
 }

@@ -13,7 +13,9 @@ namespace Assets.Scripts {
 
         public int stars;
 
-        public readonly List<Creature> creatures;
+        public int medicine;
+
+        //public readonly List<Creature> creatures;
 
         public int creatureCount;
 
@@ -22,8 +24,9 @@ namespace Assets.Scripts {
         public GameState()
         {
             this.dateTime = new DateTime();
-			this.food = 100;
-            this.stars = 100;
+			this.food = 0;
+            this.stars = 10;
+            this.medicine = 0;
             this.creatureCount = 0;
             this.creatureObjects = new List<GameObject>();
         }
@@ -49,9 +52,30 @@ namespace Assets.Scripts {
 			return food;
 		}
 
+        public int GetMedicine()
+        {
+            return medicine;
+        }
+
         public void AddStars(int amount)
         {
             this.stars += amount;
+        }
+
+        public void AddFood(int amount)
+        {
+            this.food += amount;
+        }
+
+        public void AddMedicine(int amount)
+        {
+            this.medicine += amount;
+        }
+
+        public void AddCreature(GameObject creatureObject)
+        {
+            this.creatureCount += 1;
+            this.creatureObjects.Add(creatureObject);
         }
 
         public List<Creature> GetCreatures()
@@ -83,22 +107,15 @@ namespace Assets.Scripts {
             }
         }
 
-        private void CreateCreature()
+        public void CreateCreature()
         {
             // Create gameobject
             GameObject newCreature = new GameObject("Creature " + this.creatureCount++);
             newCreature.AddComponent<SpriteRenderer>();
             newCreature.AddComponent<CapsuleCollider2D>();
 
-            // Choose random pet
-            List<string> imageFiles = new List<string>{"1","2","3","4","5","6a", "6b", "6c", "7" };
-            System.Random random = new System.Random();
-            int randomImageInt = random.Next(0,9);
-            Debug.Log("Randomimageint: " + randomImageInt);
-
-            // Set image
-            Texture2D tex = Resources.Load<Texture2D>(imageFiles[randomImageInt]) as Texture2D;
-            Debug.Log("image name: " + tex.name);
+            // Set egg
+            Texture2D tex = Resources.Load<Texture2D>("egg") as Texture2D;
             Sprite sprite = new Sprite();
             sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             SpriteRenderer SR = newCreature.GetComponent<SpriteRenderer>();
@@ -107,20 +124,19 @@ namespace Assets.Scripts {
             // Set size
             Transform transform = newCreature.GetComponent<Transform>();
             Vector3 mi = transform.localScale;
-            mi.y = 0.1f;
-            mi.x = 0.1f;
+            mi.y = 0.2f;
+            mi.x = 0.2f;
             transform.localScale = mi;
 
             // Set collider size
             CapsuleCollider2D collider = newCreature.GetComponent<CapsuleCollider2D>();
             Vector2 v = collider.size;
-            v.x = 10f;
-            v.y = 10f;
+            v.x = 5f;
+            v.y = 5f;
             collider.size = v;
 
             // Add creature component
             newCreature.AddComponent<Creature>();
-            newCreature.GetComponent<Creature>().Hatch();
 
             // Add to list of creatures
             creatureObjects.Add(newCreature);
