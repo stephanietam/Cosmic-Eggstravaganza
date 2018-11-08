@@ -53,5 +53,18 @@ namespace Assets.Scripts
             attribute.AddPoints(1);
         }
 
+        public static Creature Instance;
+        void Awake()
+        {
+            if (Instance == null)
+            {
+                DontDestroyOnLoad(transform.gameObject);
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(transform.gameObject);
+            }
+        }
     }
 }

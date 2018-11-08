@@ -10,6 +10,8 @@ public class NextPhaseButton : MonoBehaviour {
 
     void Start()
     {
+        GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
+        this.gameState = gameObject.GetComponent<GameState>();
         dateTimeText.text = gameState.GetDateTime().ToString();
     }
 
@@ -19,12 +21,15 @@ public class NextPhaseButton : MonoBehaviour {
 
 
         // Decrease stats for all pets
-        List<Creature> creatures = gameState.GetCreatures();
-        for (int i = 0; i < creatures.Count; ++i)
+        if (gameState.creatureCount > 0)
         {
-            Creature creature = creatures[i];
-            // change stats
-            ChangeCreatureStats(creature);
+            List<Creature> creatures = gameState.GetCreatures();
+            for (int i = 0; i < creatures.Count; ++i)
+            {
+                Creature creature = creatures[i];
+                // change stats
+                ChangeCreatureStats(creature);
+            }
         }
 
         // Set time of day
