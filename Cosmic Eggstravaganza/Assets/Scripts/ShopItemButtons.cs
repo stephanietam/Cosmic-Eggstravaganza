@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,11 +32,23 @@ public class ShopItemButtons : MonoBehaviour
 
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
+
+        // Hide all the creatures
+        List<GameObject> creatures = this.gameState.GetCreatureObjects();
+        for (int i = creatures.Count - 1; i >= 0; --i)
+        {
+            creatures[i].SetActive(false);
+        }
     }
 
     private void Update()
     {
-        if (this.currentMode==2)
+        if (this.currentMode == 1)
+        {
+            this.starsQuantity.text = "Pets owned: " + this.gameState.creatureCount + "\n" +
+                "Stars: " + this.gameState.GetStars();
+        }
+        else if (this.currentMode==2)
         {
             this.starsQuantity.text = "Owned: " + this.gameState.GetFood() + "\n" +
                 "Stars: " + this.gameState.GetStars();
@@ -155,7 +168,10 @@ public class ShopItemButtons : MonoBehaviour
                 this.gameState.AddStars(-10);
                 this.gameState.AddMedicine(1);
             }
-            else { Debug.Log("Not enough money!"); }
+            else 
+            {
+                Debug.Log("Not enough money!");
+            }
         }
     }
 }

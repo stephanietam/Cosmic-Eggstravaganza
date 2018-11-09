@@ -12,11 +12,41 @@ public class FarmScript : MonoBehaviour {
 
     public Text foodText;
 
-	// Use this for initialization
-	void Start () {
-        Debug.Log("Farm started");
+    private int phase;
+
+    public GameObject morningImage;
+
+    public GameObject nightImage;
+
+    public GameObject afternoonImage;
+
+    void Start () {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
+        SetBackground();
+    }
+
+    private void SetBackground()
+    {
+        this.phase = this.gameState.GetDateTime().GetPhase();
+        if (this.phase==0)
+        {
+            morningImage.SetActive(true);
+            nightImage.SetActive(false);
+            afternoonImage.SetActive(false);
+        }
+        else if (this.phase == 1)
+        {
+            morningImage.SetActive(false);
+            nightImage.SetActive(false);
+            afternoonImage.SetActive(true);
+        }
+        else if (this.phase == 2)
+        {
+            morningImage.SetActive(false);
+            nightImage.SetActive(true);
+            afternoonImage.SetActive(false);
+        }
     }
 
     private void Update()
@@ -33,6 +63,8 @@ public class FarmScript : MonoBehaviour {
 
         }
 
+        // Set background, stars, and food
+        SetBackground();
         starsText.text = "Stars: " + this.gameState.GetStars().ToString();
         foodText.text = "Food: " + this.gameState.GetFood().ToString();
     }
