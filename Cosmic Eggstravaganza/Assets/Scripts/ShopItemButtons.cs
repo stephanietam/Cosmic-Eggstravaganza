@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,13 @@ public class ShopItemButtons : MonoBehaviour
 
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
+
+        // Hide all the creatures
+        List<GameObject> creatures = this.gameState.GetCreatureObjects();
+        for (int i = creatures.Count - 1; i >= 0; --i)
+        {
+            creatures[i].SetActive(false);
+        }
     }
 
     private void Update()
