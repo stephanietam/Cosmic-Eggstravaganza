@@ -10,7 +10,20 @@ public class ShopsButton : MonoBehaviour {
 
     public void OnClick()
     {
-      SceneManager.LoadScene("ShopsScene");
+        GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
+        this.gameState = gameObject.GetComponent<GameState>();
+        List<GameObject> creatures = this.gameState.GetCreatureObjects();
+        for (int i = this.gameState.creatureCount - 1; i >= 0; --i)
+        {
+            GameObject creature = creatures[i];
+            if (!creature.activeSelf)
+            {
+                creature.SetActive(false);
+            }
+
+        }
+
+        SceneManager.LoadScene("ShopsScene");
     }
 
 }

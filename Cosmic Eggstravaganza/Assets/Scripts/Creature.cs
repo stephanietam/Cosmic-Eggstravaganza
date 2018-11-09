@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -15,13 +14,19 @@ namespace Assets.Scripts
 
         public bool hatched;
 
+        public Area location;
+
+        public Mood mood;
+
         public Creature()
         {
-            hunger = new Attribute(10);
-            happiness = new Attribute(10);
-            hygene = new Attribute(10);
-            age = 0;
-            hatched = false;
+            this.hunger = new Attribute(10);
+            this.happiness = new Attribute(10);
+            this.hygene = new Attribute(10);
+            this.age = 0;
+            this.hatched = false;
+            this.location = Area.Stable;
+            this.mood = Mood.Happy;
         }
 
         public bool HasHatched()
@@ -47,6 +52,11 @@ namespace Assets.Scripts
         public Attribute GetHygene()
         {
             return hygene;
+        }
+
+        public Mood GetMood()
+        {
+            return this.mood;
         }
 
         public void DecreaseAttribute(Attribute attribute)

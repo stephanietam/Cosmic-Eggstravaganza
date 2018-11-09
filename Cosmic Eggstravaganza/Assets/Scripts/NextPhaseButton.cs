@@ -18,9 +18,6 @@ public class NextPhaseButton : MonoBehaviour {
 
     public void OnClick()
     {
-        // Change scene aka change background?
-
-
         // Decrease stats for all pets
         if (gameState.creatureCount > 0)
         {

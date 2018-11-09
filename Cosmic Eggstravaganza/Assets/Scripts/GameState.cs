@@ -15,8 +15,6 @@ namespace Assets.Scripts {
 
         public int medicine;
 
-        //public readonly List<Creature> creatures;
-
         public int creatureCount;
 
         public List<GameObject> creatureObjects;
@@ -137,10 +135,10 @@ namespace Assets.Scripts {
 
             // Add creature component
             newCreature.AddComponent<Creature>();
+            newCreature.SetActive(false);
 
             // Add to list of creatures
             creatureObjects.Add(newCreature);
-            Debug.Log("Creature created!");
         }
     }
 }

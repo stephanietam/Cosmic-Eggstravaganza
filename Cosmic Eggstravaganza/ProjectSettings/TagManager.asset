@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameState
+  - MorningImage
+  - AfternoonImage
+  - NightImage
   layers:
   - Default
   - TransparentFX

@@ -43,7 +43,12 @@ public class ShopItemButtons : MonoBehaviour
 
     private void Update()
     {
-        if (this.currentMode==2)
+        if (this.currentMode == 1)
+        {
+            this.starsQuantity.text = "Pets owned: " + this.gameState.creatureCount + "\n" +
+                "Stars: " + this.gameState.GetStars();
+        }
+        else if (this.currentMode==2)
         {
             this.starsQuantity.text = "Owned: " + this.gameState.GetFood() + "\n" +
                 "Stars: " + this.gameState.GetStars();
@@ -163,7 +168,10 @@ public class ShopItemButtons : MonoBehaviour
                 this.gameState.AddStars(-10);
                 this.gameState.AddMedicine(1);
             }
-            else { Debug.Log("Not enough money!"); }
+            else 
+            {
+                Debug.Log("Not enough money!");
+            }
         }
     }
 }
