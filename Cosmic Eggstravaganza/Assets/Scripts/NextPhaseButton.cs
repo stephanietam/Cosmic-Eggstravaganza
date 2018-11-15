@@ -78,10 +78,15 @@ public class NextPhaseButton : MonoBehaviour {
             Attribute hygene = creature.GetHygene();
             Attribute hunger = creature.GetHunger();
             Attribute happiness = creature.GetHappiness();
+            Attribute energy = creature.GetEnergy();
+            Attribute amusement = creature.GetAmusement();
 
             hygene.LosePoints(1);
             hunger.LosePoints(1);
             happiness.LosePoints(1);
+            energy.LosePoints(1);
+            amusement.LosePoints(1);
+            creature.SetMood();
         }
         creature.age += 1;
     }

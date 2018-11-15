@@ -3,9 +3,11 @@
     public enum Mood
     {
         Happy = 0,
-        Tired = 1,
-        Sleepy = 2,
-        Hungry = 3,
-        Bored = 4
+        Neutral = 1,
+        Hungry = 2,
+        Bored = 3,
+        Sleepy = 4,
+        Disgusted = 5,
+        Sick = 6
     }
 }

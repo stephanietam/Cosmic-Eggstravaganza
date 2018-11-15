@@ -11,6 +11,8 @@ public class PetLibrary : MonoBehaviour {
 
     public Text statsText;
 
+    public Text descriptionText;
+
     private List<GameObject> creatures;
 
     public GameObject displayPanel;
@@ -52,45 +54,47 @@ public class PetLibrary : MonoBehaviour {
         {
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
             SetStats(this.statsText, creature);
-        }
-
-        if (this.creatureIndex == -1 || this.creatureIndex+1 >= this.creatures.Count)
-        {
-            rightButton.interactable = false;
-        }
-        if (this.creatureIndex == -1 || this.creatureIndex-1 < 0)
-        {
-            leftButton.interactable = false;
+            SetDescription(this.descriptionText, creature);
         }
     }
 
     public void SetStats(Text text, Creature creature)
     {
-        text.text = String.Format("{0,15}   {1,15}\n", "Name", creature.name) +
-                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood()) +
-                    String.Format("{0,15}   {1,15}\n", "Happiness", creature.GetHappiness().GetPoints().ToString()) +
+        text.text = String.Format("{0,15}   {1,15}\n", "Happiness", creature.GetHappiness().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString());
+                    String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString());
+    }
+
+    public void SetDescription(Text text, Creature creature)
+    {
+        text.text = String.Format("{0,15}   {1,15}\n", "Name", creature.name) +
+                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood());
     }
 
     public void RightButtonOnClick()
     {
-        if (this.creatureIndex != -1 && this.creatureIndex + 1 < this.creatures.Count && rightButton.interactable)
+        this.creatureIndex++;
+
+        if (this.creatureIndex >= this.creatures.Count)
         {
-            this.creatureIndex++;
-            SetDisplayPet();
-            leftButton.interactable = true;
+            this.creatureIndex %= this.creatures.Count;
         }
+
+        SetDisplayPet();
     }
 
     public void LeftButtonOnClick()
     {
-        if (this.creatureIndex != -1 && this.creatureIndex-1 >= 0 && leftButton.interactable)
+        this.creatureIndex--;
+
+        if (this.creatureIndex < 0)
         {
-            this.creatureIndex--;
-            SetDisplayPet();
-            rightButton.interactable = true;
+            this.creatureIndex = this.creatures.Count - 1;
         }
+
+        SetDisplayPet();
     }
 
     private void SetDisplayPet()
@@ -108,5 +112,10 @@ public class PetLibrary : MonoBehaviour {
         Transform transform = this.displayPet.GetComponent<Transform>();
         Vector3 scale = new Vector3(0.2f, 0.2f, 1f);
         transform.localScale = scale;
+    }
+
+    public void SellPet()
+    {
+
     }
 }
