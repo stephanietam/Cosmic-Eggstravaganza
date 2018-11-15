@@ -149,8 +149,8 @@ namespace Assets.Scripts {
           saveFile += stars + "\n";
           saveFile += medicine + "\n";
           saveFile += creatureCount + "\n";
-          creatures = GetCreatures();
-          for(i = 0; i < creatureCount; i++){
+          List<Creature> creatures = GetCreatures();
+          for(int i = 0; i < creatureCount; i++){
             break;
           }
           return saveFile;
