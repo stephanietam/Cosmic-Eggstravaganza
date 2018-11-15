@@ -27,6 +27,8 @@ public class PetLibrary : MonoBehaviour {
 
     public GameObject petTexts;
 
+    public Button sellButton;
+
     void Start() {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
@@ -62,17 +64,17 @@ public class PetLibrary : MonoBehaviour {
 
     public void SetStats(Text text, Creature creature)
     {
-        text.text = String.Format("{0,15}   {1,15}\n", "Happiness", creature.GetHappiness().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString());
+        text.text = String.Format("{0,-10}   {1,-2}\n", "Happiness", creature.GetHappiness().GetPoints().ToString()) +
+                    String.Format("{0,-10}   {1,-2}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
+                    String.Format("{0,-10}   {1,-2}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
+                    String.Format("{0,-10}   {1,-2}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
+                    String.Format("{0,-10}   {1,-2}\n", "Energy", creature.GetEnergy().GetPoints().ToString());
     }
 
     public void SetDescription(Text text, Creature creature)
     {
         text.text = String.Format("{0,15}   {1,15}\n", "Name", creature.name) +
-                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood());
+                    String.Format("{0,15}   {1,15}\n", "Status", creature.GetMood());
     }
 
     public void RightButtonOnClick()
@@ -114,6 +116,7 @@ public class PetLibrary : MonoBehaviour {
             noPet.SetActive(true);
             displayPet.SetActive(false);
             petTexts.SetActive(false);
+            sellButton.interactable = false;
         } 
         else
         {
@@ -121,6 +124,7 @@ public class PetLibrary : MonoBehaviour {
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
             SetStats(this.statsText, creature);
             Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
+            sellButton.interactable = true;
 
             // Set display pet image
             SpriteRenderer SR = this.displayPet.GetComponent<SpriteRenderer>();

@@ -1000,6 +1000,7 @@ MonoBehaviour:
   rightButton: {fileID: 1070416129}
   displayPet: {fileID: 1201384372}
   petTexts: {fileID: 779910977}
+  sellButton: {fileID: 465032078}
 --- !u!4 &953364971
 Transform:
   m_ObjectHideFlags: 0
