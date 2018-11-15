@@ -25,8 +25,6 @@ public class PetLibrary : MonoBehaviour {
 
     public GameObject displayPet;
 
-    public GameObject petTexts;
-
     void Start() {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
@@ -77,78 +75,47 @@ public class PetLibrary : MonoBehaviour {
 
     public void RightButtonOnClick()
     {
-        if (this.creatures.Count > 0)
+        this.creatureIndex++;
+
+        if (this.creatureIndex >= this.creatures.Count)
         {
-            this.creatureIndex++;
-
-            if (this.creatureIndex >= this.creatures.Count)
-            {
-                this.creatureIndex %= this.creatures.Count;
-            }
-
-            SetDisplayPet();
+            this.creatureIndex %= this.creatures.Count;
         }
-        
+
+        SetDisplayPet();
     }
 
     public void LeftButtonOnClick()
     {
-        if (this.creatures.Count > 0)
+        this.creatureIndex--;
+
+        if (this.creatureIndex < 0)
         {
-            this.creatureIndex--;
-
-            if (this.creatureIndex < 0)
-            {
-                this.creatureIndex = this.creatures.Count - 1;
-            }
-
-            SetDisplayPet();
+            this.creatureIndex = this.creatures.Count - 1;
         }
+
+        SetDisplayPet();
     }
 
     private void SetDisplayPet()
     {
-        if (this.creatures.Count == 0)
-        {
-            this.creatureIndex = -1;
-            noPet.SetActive(true);
-            displayPet.SetActive(false);
-            petTexts.SetActive(false);
-        } 
-        else
-        {
-            // Show the stats for the displayed creature
-            Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
-            SetStats(this.statsText, creature);
-            Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
+        // Show the stats for the displayed creature
+        Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
+        SetStats(this.statsText, creature);
+        Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
 
-            // Set display pet image
-            SpriteRenderer SR = this.displayPet.GetComponent<SpriteRenderer>();
-            SR.sprite = creatureSprite;
+        // Set display pet image
+        SpriteRenderer SR = this.displayPet.GetComponent<SpriteRenderer>();
+        SR.sprite = creatureSprite;
 
-            // Scale
-            Transform transform = this.displayPet.GetComponent<Transform>();
-            Vector3 scale = new Vector3(0.2f, 0.2f, 1f);
-            transform.localScale = scale;
-        } 
+        // Scale
+        Transform transform = this.displayPet.GetComponent<Transform>();
+        Vector3 scale = new Vector3(0.2f, 0.2f, 1f);
+        transform.localScale = scale;
     }
 
     public void SellPet()
     {
-        GameObject creature = this.creatures[this.creatureIndex];
 
-        // get pet worth
-        this.gameState.AddStars(creature.GetComponent<Creature>().worth);
-
-        // remove pet from gamestate
-        this.gameState.RemoveCreature(creature);
-        this.creatureIndex++;
-
-        // remove pet from scene
-        if (this.creatureIndex >= this.creatures.Count)
-        {
-            this.creatureIndex = 0;
-        }
-        SetDisplayPet();
     }
 }

@@ -24,12 +24,6 @@ public class ShopItemButtons : MonoBehaviour
 
     public GameState gameState;
 
-    public GameObject panelPopup;
-
-    public Text panelPopupText;
-
-    public GameObject backgroundCover;
-
     // Use this for initialization
     void Start()
     {
@@ -146,12 +140,11 @@ public class ShopItemButtons : MonoBehaviour
 
                 // Create gameobject
                 this.gameState.CreateCreature();
-                Popup("You bought an egg!");
             }
             else
             {
                 // pop up warning
-                Popup("You don't have enough stars!");
+                Debug.Log("Not enough money!");
             }
         }
         else if (this.currentMode==2)
@@ -161,11 +154,10 @@ public class ShopItemButtons : MonoBehaviour
                 // buying food
                 this.gameState.AddStars(-10);
                 this.gameState.AddFood(1);
-                Popup("You bought food!");
             }
             else
             {
-                Popup("You don't have enough stars!");
+                Debug.Log("Not enough money!");
             }
         }
         else if (this.currentMode==3)
@@ -175,26 +167,11 @@ public class ShopItemButtons : MonoBehaviour
                 // buying medicine
                 this.gameState.AddStars(-10);
                 this.gameState.AddMedicine(1);
-                Popup("You bought medicine!");
             }
             else 
             {
-                Popup("You don't have enough stars!");
+                Debug.Log("Not enough money!");
             }
         }
-    }
-
-    public void Popup(string popupText)
-    {
-        backgroundCover.SetActive(true);
-        panelPopup.SetActive(true);
-
-        panelPopupText.text = popupText;
-    }
-
-    public void ClosePopUp()
-    {
-        backgroundCover.SetActive(false);
-        panelPopup.SetActive(false);
     }
 }
