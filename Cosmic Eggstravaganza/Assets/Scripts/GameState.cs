@@ -19,8 +19,6 @@ namespace Assets.Scripts {
 
         public List<GameObject> creatureObjects;
 
-        public int dept;
-
         public GameState()
         {
             this.dateTime = new DateTime();
@@ -29,7 +27,6 @@ namespace Assets.Scripts {
             this.medicine = 0;
             this.creatureCount = 0;
             this.creatureObjects = new List<GameObject>();
-            this.dept = 1000;
         }
 
         public void Start()
@@ -148,6 +145,21 @@ namespace Assets.Scripts {
 
             // Add to list of creatures
             creatureObjects.Add(newCreature);
+        }
+
+        public string WriteSave()
+        {
+          string saveFile = "";
+          saveFile += dateTime.GetDay() + " " + dateTime.GetPhase() + "\n";
+          saveFile += food + "\n";
+          saveFile += stars + "\n";
+          saveFile += medicine + "\n";
+          saveFile += creatureCount + "\n";
+          List<Creature> creatures = GetCreatures();
+          for(int i = 0; i < creatureCount; i++){
+            break;
+          }
+          return saveFile;
         }
     }
 }
