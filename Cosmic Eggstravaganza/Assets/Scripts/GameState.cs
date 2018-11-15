@@ -19,6 +19,8 @@ namespace Assets.Scripts {
 
         public List<GameObject> creatureObjects;
 
+        public int dept;
+
         public GameState()
         {
             this.dateTime = new DateTime();
@@ -27,6 +29,7 @@ namespace Assets.Scripts {
             this.medicine = 0;
             this.creatureCount = 0;
             this.creatureObjects = new List<GameObject>();
+            this.dept = 1000;
         }
 
         public void Start()
