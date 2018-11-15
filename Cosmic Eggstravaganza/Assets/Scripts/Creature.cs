@@ -24,6 +24,8 @@ namespace Assets.Scripts
 
         public bool healthy;
 
+        public int worth;
+
         public Creature()
         {
             this.hunger = new Attribute(10);
@@ -37,6 +39,7 @@ namespace Assets.Scripts
             this.location = Area.Stable;
             this.mood = Mood.Happy;
             this.healthy = true;
+            this.worth = 10;
         }
 
         public bool HasHatched()
