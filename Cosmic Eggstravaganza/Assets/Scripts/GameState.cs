@@ -114,6 +114,7 @@ namespace Assets.Scripts {
             GameObject newCreature = new GameObject("Creature " + this.creatureCount++);
             newCreature.AddComponent<SpriteRenderer>();
             newCreature.AddComponent<CapsuleCollider2D>();
+			newCreature.AddComponent<Rigidbody2D>();
 
             // Set egg
             Texture2D tex = Resources.Load<Texture2D>("egg") as Texture2D;
@@ -135,6 +136,10 @@ namespace Assets.Scripts {
             v.x = 5f;
             v.y = 5f;
             collider.size = v;
+
+			// Set Rigidbody optinos
+			Rigidbody2D rb = newCreature.GetComponent<Rigidbody2D>();
+			rb.isKinematic = true;
 
             // Add creature component
             newCreature.AddComponent<Creature>();
