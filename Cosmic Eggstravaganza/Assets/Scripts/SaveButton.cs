@@ -22,10 +22,10 @@ public class SaveButton : MonoBehaviour {
     {
       saveText.text = "Saving...";
       dataPath = Path.Combine(Application.persistentDataPath, "save.sv");
-      string jsonString = JsonUtility.ToJson(gameState);
+      string saveInfo = gameState.WriteSave();
       using (StreamWriter streamWriter = File.CreateText(dataPath))
        {
-           streamWriter.Write (jsonString);
+           streamWriter.Write (saveInfo);
        }
        saveText.text = "Game saved.";
     }
