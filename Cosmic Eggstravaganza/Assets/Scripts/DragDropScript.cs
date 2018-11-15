@@ -52,6 +52,9 @@ public class DragDropScript : MonoBehaviour {
 					obj = hit.transform.gameObject;
 					//obj.transform.localScale = new Vector3(1f,1f,1f);
 				}
+				if (obj.CompareTag("AreaImage")) {
+					draggingObject = false;
+				}
 			}
 		}
 	}

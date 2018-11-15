@@ -8,6 +8,7 @@ TagManager:
   - MorningImage
   - AfternoonImage
   - NightImage
+  - AreaImage
   layers:
   - Default
   - TransparentFX
