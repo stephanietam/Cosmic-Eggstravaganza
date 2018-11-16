@@ -19,14 +19,16 @@ public class DragDropScript : MonoBehaviour {
 	bool draggingObject;
 	GameObject obj;
 
-	// Use this for initialization
-	void Start () {
-		draggingObject = false;
+    private Rect moveableRect;
+    // Use this for initialization
+    void Start () {
+        moveableRect = new Rect(0, 0, Screen.width, Screen.height);
+        draggingObject = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (mouseDown) {
+        if (mouseDown && moveableRect.Contains(Input.mousePosition)) {
 			Drag ();
 		} 
 		else {

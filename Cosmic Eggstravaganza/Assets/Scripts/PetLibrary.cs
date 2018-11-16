@@ -144,16 +144,22 @@ public class PetLibrary : MonoBehaviour {
             this.sellButton.interactable = false;
             this.displayPet.SetActive(false);
             this.petText.SetActive(false);
-            SetDisplayPet();
+            
+        }
+        else
+        {
+            this.creatureIndex += 1;
+            if (this.creatureIndex >= this.creatures.Count)
+            {
+                this.creatureIndex = 0;
+            }
+            
         }
 
-        this.creatureIndex += 1;
-        if (this.creatureIndex >= this.creatures.Count)
-        {
-            this.creatureIndex = 0;
-        }
-        
-        
-       
+        SetDisplayPet();
+
+
+
+
     }
 }
