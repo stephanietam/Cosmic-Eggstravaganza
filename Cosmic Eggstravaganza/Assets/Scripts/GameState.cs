@@ -76,6 +76,12 @@ namespace Assets.Scripts {
             this.creatureObjects.Add(creatureObject);
         }
 
+        public void RemoveCreature(GameObject creatureObject)
+        {
+            this.creatureCount -= 1;
+            this.creatureObjects.Remove(creatureObject);
+        }
+
         public List<Creature> GetCreatures()
         {
             List<Creature> creatures = new List<Creature>();
