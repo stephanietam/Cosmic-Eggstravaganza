@@ -7,7 +7,7 @@ public class DragDropScript : MonoBehaviour {
 	Vector2 currentMousePosition {
 		get {
 			Vector2 inputPos;
-			inputPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			inputPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			return inputPos;
 		}
 	}
@@ -18,6 +18,7 @@ public class DragDropScript : MonoBehaviour {
 	}
 	bool draggingObject;
 	GameObject obj;
+	Vector2 prevObjPos; // previous object position
 
 	// Use this for initialization
 	void Start () {
@@ -61,6 +62,8 @@ public class DragDropScript : MonoBehaviour {
 
 	void Drop() {
 		draggingObject = false;
+		prevObjPos = obj.transform.position;
+		Debug.Log (prevObjPos);
 		//obj.transform.localScale = new Vector3(1f,1f,1f);
 	}
 }
