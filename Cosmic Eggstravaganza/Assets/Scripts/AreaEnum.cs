@@ -4,8 +4,8 @@
     {
         Stable = 0,
         Clean = 1,
-        Play = 2,
+        Playground = 2,
         Eat = 3,
-        Playground = 4
+        Gym = 4
     }
 }
