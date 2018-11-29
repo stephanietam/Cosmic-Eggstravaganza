@@ -6,8 +6,6 @@ namespace Assets.Scripts
     {
         public Attribute hunger;
 
-        public Attribute happiness;
-
         public Attribute hygene;
 
         public Attribute energy;
@@ -100,6 +98,12 @@ namespace Assets.Scripts
           return this.intelligence;
         }
 
+        public int GetWorth()
+        {
+            this.SetWorth();
+            return this.worth;
+        }
+
         public void SetWorth()
         {
           this.worth = 10+10*this.strength.GetPoints()+10*this.dexterity.GetPoints()+10*this.intelligence.GetPoints();
@@ -111,12 +115,12 @@ namespace Assets.Scripts
 
         public void SetMood()
         {
-            if (this.hunger.GetPoints() > 5 && this.happiness.GetPoints() > 5 && this.hygene.GetPoints() > 5 && this.energy.GetPoints() > 5 && this.amusement.GetPoints() > 5)
+            if (this.hunger.GetPoints() > 5 && this.hygene.GetPoints() > 5 && this.energy.GetPoints() > 5 && this.amusement.GetPoints() > 5)
             {
                 this.healthy = true;
                 this.mood = Mood.Happy;
             }
-            else if (this.hunger.GetPoints() < 4 && this.happiness.GetPoints() < 4 && this.hygene.GetPoints() < 4 && this.energy.GetPoints() < 4 && this.amusement.GetPoints() < 4)
+            else if (this.hunger.GetPoints() < 4 && this.hygene.GetPoints() < 4 && this.energy.GetPoints() < 4 && this.amusement.GetPoints() < 4)
             {
                 this.healthy = false;
                 this.mood = Mood.Sick;

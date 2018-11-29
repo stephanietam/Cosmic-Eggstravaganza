@@ -73,7 +73,8 @@ public class PetLibrary : MonoBehaviour {
     public void SetDescription(Text text, Creature creature)
     {
         text.text = String.Format("{0,15}   {1,15}\n", "Name", creature.name) +
-                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood());
+                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood()) +
+                    String.Format("{0,15}   {1,15}\n", "Worth", creature.GetWorth());
     }
 
     public void RightButtonOnClick()
@@ -134,7 +135,7 @@ public class PetLibrary : MonoBehaviour {
     public void SellPet()
     {
         GameObject creatureObject = this.creatures[this.creatureIndex];
-        this.gameState.stars += creatureObject.GetComponent<Creature>().worth;
+        this.gameState.stars += creatureObject.GetComponent<Creature>().GetWorth();
 
         this.gameState.RemoveCreature(creatureObject);
 
