@@ -17,8 +17,10 @@ public class Gym : MonoBehaviour
 	void OnTriggerExit2D(Collider2D col) {
 		Debug.Log ("Creature moved out of gym");
 		Creature creature = col.gameObject.GetComponent<Creature>();
-		creature.location = Area.None;
-		areaTracker.setArea(Area.None);
+		if (creature.location == Area.Gym) {
+			creature.location = Area.None;
+			areaTracker.setArea(Area.None);
+		}
 	}
 }
 

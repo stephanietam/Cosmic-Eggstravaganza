@@ -17,8 +17,10 @@ public class EatingArea : MonoBehaviour
 	void OnTriggerExit2D(Collider2D col) {
 		Debug.Log ("Creature moved out of eating area");
 		Creature creature = col.gameObject.GetComponent<Creature>();
-		creature.location = Area.None;
-		areaTracker.setArea(Area.None);
+		if (creature.location == Area.Eat) {
+			creature.location = Area.None;
+			areaTracker.setArea(Area.None);
+		}
 	}
 }
 

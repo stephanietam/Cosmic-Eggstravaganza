@@ -26,7 +26,9 @@ public class CleaningArea : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D col) {
 		Debug.Log ("Creature moved out of cleaning area");
 		Creature creature = col.gameObject.GetComponent<Creature> ();
-		creature.location = Area.None;
-		areaTracker.setArea(Area.None);
+		if (creature.location == Area.Clean) {
+			creature.location = Area.None;
+			areaTracker.setArea(Area.None);
+		}
 	}
 }
