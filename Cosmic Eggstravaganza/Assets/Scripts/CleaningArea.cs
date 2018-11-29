@@ -17,8 +17,6 @@ public class CleaningArea : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col) {
 		Debug.Log("Creature moved to cleaning area");
-//		Vector2 pos = new Vector2 (0, 0);
-//		col.gameObject.transform.position = transform.position;
 		Creature creature = col.gameObject.GetComponent<Creature>();
 		creature.location = Area.Clean;
 	}
@@ -27,6 +25,5 @@ public class CleaningArea : MonoBehaviour {
 		Debug.Log ("Creature moved out of cleaning area");
 		Creature creature = col.gameObject.GetComponent<Creature> ();
 		creature.location = Area.Stable;
-		Debug.Log (creature.hygene.GetPoints());
 	}
 }
