@@ -15,6 +15,8 @@ public class ShopItemButtons : MonoBehaviour
 
     public Button popupButton;
 
+    public GameObject popupBG;
+
     public Text ownEggs;
 
     public Text ownMedicine;
@@ -34,7 +36,7 @@ public class ShopItemButtons : MonoBehaviour
             creatures[i].SetActive(false);
         }
 
-        this.ownEggs.text = "Own: " + this.gameState.creatureCount;
+        this.ownEggs.text = "Pet Count: " + this.gameState.creatureCount;
         this.ownFood.text = "Own: " + this.gameState.GetFood();
         this.ownMedicine.text = "Own: " + this.gameState.GetMedicine();
     }
@@ -98,11 +100,13 @@ public class ShopItemButtons : MonoBehaviour
     private void Popup(string message)
     {
         this.popupPanel.SetActive(true);
+        this.popupBG.SetActive(true);
         this.popupText.text = message;
     }
 
     public void ClosePopup()
     {
         this.popupPanel.SetActive(false);
+        this.popupBG.SetActive(false);
     }
 }
