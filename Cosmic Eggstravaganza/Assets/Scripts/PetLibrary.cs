@@ -49,7 +49,7 @@ public class PetLibrary : MonoBehaviour {
             // Show no pet message
             this.noPet.SetActive(true);
             this.creatureIndex = -1;
-        } 
+        }
     }
 
     public void Update()
@@ -64,8 +64,7 @@ public class PetLibrary : MonoBehaviour {
 
     public void SetStats(Text text, Creature creature)
     {
-        text.text = String.Format("{0,15}   {1,15}\n", "Happiness", creature.GetHappiness().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
+        text.text = String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString());

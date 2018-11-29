@@ -77,16 +77,37 @@ public class NextPhaseButton : MonoBehaviour {
             // decrease stats
             Attribute hygene = creature.GetHygene();
             Attribute hunger = creature.GetHunger();
-            Attribute happiness = creature.GetHappiness();
             Attribute energy = creature.GetEnergy();
             Attribute amusement = creature.GetAmusement();
+            Attribute strength = creature.GetStrength();
+            Attribute dexterity = creature.GetDexterity();
+            Attribute intelligence = creature.GetIntelligence();
+            List<Attribute> attributes = new List<Attribute>{strength,dexterity,intelligence};
 
             hygene.LosePoints(1);
             hunger.LosePoints(1);
-            happiness.LosePoints(1);
             energy.LosePoints(1);
             amusement.LosePoints(1);
             creature.SetMood();
+
+            if (creature.location == Area.Eat){
+                if (this.gameState.GetFood() > 0){
+                  this.gameState.AddFood(-1);
+                  hunger.AddPoints(3);
+                }
+                energy.AddPoints(3);
+            }
+            if (creature.location == Area.Clean){
+              hygene.AddPoints(3);
+            }
+            if (creature.location == Area.Playground){
+              amusement.AddPoints(3);
+            }
+            if (creature.location == Area.Gym){
+              System.Random random = new System.Random();
+              int randomStat = random.Next(0, 3);
+              attributes[randomStat].AddPoints(2);
+            }
         }
         creature.age += 1;
     }

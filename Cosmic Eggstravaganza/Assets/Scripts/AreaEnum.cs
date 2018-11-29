@@ -2,6 +2,7 @@
 {
     public enum Area
     {
+		None = -1,
         Stable = 0,
         Clean = 1,
         Playground = 2,

@@ -14,6 +14,12 @@ namespace Assets.Scripts
 
         public Attribute amusement;
 
+        public Attribute strength;
+
+        public Attribute dexterity;
+
+        public Attribute intelligence;
+
         public int age;
 
         public bool hatched;
@@ -29,10 +35,12 @@ namespace Assets.Scripts
         public Creature()
         {
             this.hunger = new Attribute(10);
-            this.happiness = new Attribute(10);
             this.hygene = new Attribute(10);
             this.energy = new Attribute(10);
             this.amusement = new Attribute(10);
+            this.strength = new Attribute(0);
+            this.dexterity = new Attribute(0);
+            this.intelligence = new Attribute(0);
 
             this.age = 0;
             this.hatched = false;
@@ -50,11 +58,6 @@ namespace Assets.Scripts
         public void Hatch()
         {
             this.hatched = true;
-        }
-
-        public Attribute GetHappiness()
-        {
-            return this.happiness;
         }
 
         public Attribute GetHunger()
@@ -80,6 +83,30 @@ namespace Assets.Scripts
         public Mood GetMood()
         {
             return this.mood;
+        }
+
+        public Attribute GetStrength()
+        {
+          return this.strength;
+        }
+
+        public Attribute GetDexterity()
+        {
+          return this.dexterity;
+        }
+
+        public Attribute GetIntelligence()
+        {
+          return this.intelligence;
+        }
+
+        public void SetWorth()
+        {
+          this.worth = 10+10*this.strength.GetPoints()+10*this.dexterity.GetPoints()+10*this.intelligence.GetPoints();
+          if (this.mood == Mood.Sick)
+          {
+            this.worth /= 2;
+          }
         }
 
         public void SetMood()
