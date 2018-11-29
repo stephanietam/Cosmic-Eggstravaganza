@@ -77,7 +77,6 @@ public class NextPhaseButton : MonoBehaviour {
             // decrease stats
             Attribute hygene = creature.GetHygene();
             Attribute hunger = creature.GetHunger();
-            Attribute happiness = creature.GetHappiness();
             Attribute energy = creature.GetEnergy();
             Attribute amusement = creature.GetAmusement();
             Attribute strength = creature.GetStrength();
@@ -87,7 +86,6 @@ public class NextPhaseButton : MonoBehaviour {
 
             hygene.LosePoints(1);
             hunger.LosePoints(1);
-            happiness.LosePoints(1);
             energy.LosePoints(1);
             amusement.LosePoints(1);
             creature.SetMood();

@@ -23,10 +23,9 @@ public class StatsScript : MonoBehaviour {
         foreach (Creature creature in gameState.GetCreatures())
         {
             text.text = creature.name + "\n" +
-                    "Happiness: " + creature.GetHappiness().GetPoints().ToString() + "\n" +
                     "Hunger: " + creature.GetHunger().GetPoints().ToString() + "\n" +
                     "Hygene: " + creature.GetHygene().GetPoints().ToString() + "\n";
         }
-        
+
     }
 }
