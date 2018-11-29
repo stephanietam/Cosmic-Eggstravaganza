@@ -33,6 +33,9 @@ namespace Assets.Scripts
             this.hygene = new Attribute(10);
             this.energy = new Attribute(10);
             this.amusement = new Attribute(10);
+            this.strength = new Attribute(0);
+            this.dexterity = new Attribute(0);
+            this.intelligence = new Attribute(0);
 
             this.age = 0;
             this.hatched = false;
@@ -80,6 +83,15 @@ namespace Assets.Scripts
         public Mood GetMood()
         {
             return this.mood;
+        }
+
+        public void SetWorth()
+        {
+          this.worth = 10+10*this.strength.GetPoints()+10*this.dexterity.GetPoints()+10*this.intelligence.GetPoints();
+          if (this.mood == Mood.Sick)
+          {
+            this.worth /= 2;
+          }
         }
 
         public void SetMood()
