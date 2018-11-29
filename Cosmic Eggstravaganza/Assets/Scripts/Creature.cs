@@ -14,11 +14,19 @@ namespace Assets.Scripts
 
         public Attribute amusement;
 
+<<<<<<< HEAD
         public Attribute strength;
 
         public Attribute dexterity;
 
         public Attribute intelligence;
+=======
+		public Attribute strength;
+
+		public Attribute dexterity;
+
+		public Attribute intelligence;
+>>>>>>> ad5c3759a0736e870491a71380d916852b47f735
 
         public int age;
 
