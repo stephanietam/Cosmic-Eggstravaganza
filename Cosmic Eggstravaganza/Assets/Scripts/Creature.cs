@@ -14,6 +14,12 @@ namespace Assets.Scripts
 
         public Attribute amusement;
 
+        public Attribute strength;
+
+        public Attribute dexterity;
+
+        public Attribute intelligence;
+
         public int age;
 
         public bool hatched;
@@ -29,7 +35,6 @@ namespace Assets.Scripts
         public Creature()
         {
             this.hunger = new Attribute(10);
-            this.happiness = new Attribute(10);
             this.hygene = new Attribute(10);
             this.energy = new Attribute(10);
             this.amusement = new Attribute(10);
@@ -55,11 +60,6 @@ namespace Assets.Scripts
             this.hatched = true;
         }
 
-        public Attribute GetHappiness()
-        {
-            return this.happiness;
-        }
-
         public Attribute GetHunger()
         {
             return this.hunger;
@@ -83,6 +83,21 @@ namespace Assets.Scripts
         public Mood GetMood()
         {
             return this.mood;
+        }
+
+        public Attribute GetStrength()
+        {
+          return this.strength;
+        }
+
+        public Attribute GetDexterity()
+        {
+          return this.dexterity;
+        }
+
+        public Attribute GetIntelligence()
+        {
+          return this.intelligence;
         }
 
         public void SetWorth()

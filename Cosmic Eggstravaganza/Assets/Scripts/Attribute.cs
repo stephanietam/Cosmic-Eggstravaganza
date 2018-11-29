@@ -40,6 +40,10 @@ namespace Assets.Scripts
             {
                 currentPoints += points;
             }
+            if (currentPoints > this.totalPoints)
+            {
+              currentPoints = this.totalPoints;
+            }
         }
     }
 }
