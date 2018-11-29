@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets.Scripts;
 
 public class CleaningArea : MonoBehaviour {
+	public AreaTracking areaTracker;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +20,13 @@ public class CleaningArea : MonoBehaviour {
 		Debug.Log("Creature moved to cleaning area");
 		Creature creature = col.gameObject.GetComponent<Creature>();
 		creature.location = Area.Clean;
+		areaTracker.setArea(Area.Clean);
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
 		Debug.Log ("Creature moved out of cleaning area");
 		Creature creature = col.gameObject.GetComponent<Creature> ();
-		creature.location = Area.Stable;
+		creature.location = Area.None;
+		areaTracker.setArea(Area.None);
 	}
 }

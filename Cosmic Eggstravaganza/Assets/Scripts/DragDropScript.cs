@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts;
 
 public class DragDropScript : MonoBehaviour {
 	// source: http://unity.grogansoft.com/drag-and-drop/
+	public AreaTracking areaTracker;
+
 	Vector2 currentMousePosition {
 		get {
 			Vector2 inputPos;
@@ -51,6 +54,7 @@ public class DragDropScript : MonoBehaviour {
 				{
 					draggingObject = true;
 					obj = hit.transform.gameObject;
+					prevObjPos = obj.transform.position;
 					//obj.transform.localScale = new Vector3(1f,1f,1f);
 				}
 				if (obj.CompareTag("AreaImage")) {
@@ -62,8 +66,9 @@ public class DragDropScript : MonoBehaviour {
 
 	void Drop() {
 		draggingObject = false;
-		prevObjPos = obj.transform.position;
-		Debug.Log (prevObjPos);
+		if (areaTracker.activeArea == Area.None) {
+			obj.transform.position = prevObjPos;
+		}
 		//obj.transform.localScale = new Vector3(1f,1f,1f);
 	}
 }
