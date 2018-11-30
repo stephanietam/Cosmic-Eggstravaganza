@@ -97,6 +97,20 @@ public class ShopItemButtons : MonoBehaviour
         }
     }
 
+	public void BuySpaceship()
+	{
+		if (this.gameState.GetStars() - 10000 >= 0)
+		{
+			// buying food
+			this.gameState.AddStars(-10000);
+			Popup("You bought a spaceship!");
+		}
+		else
+		{
+			Popup("You don't have enough stars!");
+		}
+	}
+
     private void Popup(string message)
     {
         this.popupPanel.SetActive(true);
