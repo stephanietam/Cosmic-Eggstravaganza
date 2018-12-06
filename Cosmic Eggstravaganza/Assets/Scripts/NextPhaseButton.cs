@@ -177,20 +177,16 @@ public class NextPhaseButton : MonoBehaviour {
                 if (randomStat == 0)
                 {
                     strength.AddPoints(2);
-                    Debug.Log("str is now " + strength.GetPoints());
                 }
                 else if (randomStat == 1)
                 {
                     dexterity.AddPoints(2);
-                    Debug.Log("dex is now " + dexterity.GetPoints());
                 }
                 else if (randomStat == 2)
                 {
                     intelligence.AddPoints(2);
-                    Debug.Log("int is now " + intelligence.GetPoints());
                 }
                 amusement.AddPoints(1);
-                //Debug.Log("str: " + strength.GetPoints() + ", dex: " + dexterity.GetPoints() + ", int: " + intelligence.GetPoints());
             }
 
             creature.SetMood();

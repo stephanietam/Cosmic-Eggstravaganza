@@ -122,7 +122,7 @@ namespace Assets.Scripts
                 this.healthy = true;
                 this.mood = Mood.Happy;
             }
-            else if (this.hunger.GetPoints() < 4 && this.hygene.GetPoints() < 4 && this.energy.GetPoints() < 4 && this.amusement.GetPoints() < 4)
+            else if (this.hunger.GetPoints() < 3 && this.hygene.GetPoints() < 3 && this.energy.GetPoints() < 3)
             {
                 this.healthy = false;
                 this.mood = Mood.Sick;
