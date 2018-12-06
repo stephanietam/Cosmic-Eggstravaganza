@@ -9,6 +9,7 @@ TagManager:
   - AfternoonImage
   - NightImage
   - AreaImage
+  - BG Audio
   layers:
   - Default
   - TransparentFX

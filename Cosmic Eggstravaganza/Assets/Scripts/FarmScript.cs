@@ -20,10 +20,17 @@ public class FarmScript : MonoBehaviour {
 
     public GameObject afternoonImage;
 
+    public AudioSource backgroundMusic;
+
     void Start () {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
         this.gameState = gameObject.GetComponent<GameState>();
         SetBackground();
+
+
+        GameObject audioSourceObject = GameObject.FindGameObjectWithTag("BG Audio");
+        AudioSource backgroundMusic = audioSourceObject.GetComponent<AudioSource>();
+        backgroundMusic.Play();
     }
 
     private void SetBackground()

@@ -19,6 +19,8 @@ namespace Assets.Scripts {
 
         public List<GameObject> creatureObjects;
 
+        //public AudioSource backgroundMusic;
+
         public GameState()
         {
             this.dateTime = new DateTime();
