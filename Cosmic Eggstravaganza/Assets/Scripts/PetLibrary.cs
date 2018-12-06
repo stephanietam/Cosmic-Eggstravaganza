@@ -9,10 +9,6 @@ public class PetLibrary : MonoBehaviour {
 
     public GameObject noPet;
 
-    public Text statsText;
-
-    public Text descriptionText;
-
     private List<GameObject> creatures;
 
     public GameObject displayPanel;
@@ -29,9 +25,9 @@ public class PetLibrary : MonoBehaviour {
 
     public Button medicineButton;
 
-    public GameObject petDescriptionText;
+    public GameObject statsTitlesObject;
 
-    public GameObject petStatusText;
+    public GameObject statsValuesObject;
 
     void Start() {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
@@ -56,7 +52,8 @@ public class PetLibrary : MonoBehaviour {
             this.creatureIndex = -1;
             this.sellButton.interactable = false;
         }
-        SetTextTitles(this.statsText);
+        Text statsTitles = statsTitlesObject.GetComponent<Text>();
+        SetTextTitles(statsTitles);
     }
 
     public void Update()
@@ -64,8 +61,8 @@ public class PetLibrary : MonoBehaviour {
         if (this.creatures.Count > 0)
         {
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
-
-            SetTextValues(this.descriptionText, creature);
+            Text statsValues = statsValuesObject.GetComponent<Text>();
+            SetTextValues(statsValues, creature);
             if (!creature.HasHatched() || gameState.GetMedicine()<=0 || creature.mood != Mood.Sick)
             {
                 medicineButton.interactable = false;
@@ -94,16 +91,16 @@ public class PetLibrary : MonoBehaviour {
 
     public void SetTextValues(Text text, Creature creature)
     {
-        text.text = String.Format("{0,15}\n", creature.name) +
-                    String.Format("{0,15}\n", creature.mood) +
-                    String.Format("{0,15}\n\n", creature.GetWorth()) +
-                    String.Format("{0,15}\n", creature.GetHunger().GetPoints().ToString()) +
-                    String.Format("{0,15}\n", creature.GetHygene().GetPoints().ToString()) +
-                    String.Format("{0,15}\n", creature.GetAmusement().GetPoints().ToString()) +
-                    String.Format("{0,15}\n", creature.GetEnergy().GetPoints().ToString()) +
-                    String.Format("{0,15}\n", creature.GetStrength().GetPoints().ToString()) +
-                    String.Format("{0,15}\n", creature.GetDexterity().GetPoints().ToString()) +
-                    String.Format("{0,15}\n", creature.GetIntelligence().GetPoints().ToString());
+        text.text = String.Format("{0,-15}\n", creature.name) +
+                    String.Format("{0,-15}\n", creature.mood) +
+                    String.Format("{0,-15}\n\n", creature.GetWorth()) +
+                    String.Format("{0,-15}\n", creature.GetHunger().GetPoints().ToString()) +
+                    String.Format("{0,-15}\n", creature.GetHygene().GetPoints().ToString()) +
+                    String.Format("{0,-15}\n", creature.GetAmusement().GetPoints().ToString()) +
+                    String.Format("{0,-15}\n", creature.GetEnergy().GetPoints().ToString()) +
+                    String.Format("{0,-15}\n", creature.GetStrength().GetPoints().ToString()) +
+                    String.Format("{0,-15}\n", creature.GetDexterity().GetPoints().ToString()) +
+                    String.Format("{0,-15}\n", creature.GetIntelligence().GetPoints().ToString());
     }
 
     public void RightButtonOnClick()
@@ -147,7 +144,8 @@ public class PetLibrary : MonoBehaviour {
             this.noPet.SetActive(false);
             // Show the stats for the displayed creature
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
-            SetTextValues(this.statsText, creature);
+            Text statsValues = statsValuesObject.GetComponent<Text>();
+            SetTextValues(statsValues, creature);
             Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
 
             // Set display pet image
@@ -156,7 +154,7 @@ public class PetLibrary : MonoBehaviour {
 
             // Scale
             Transform transform = this.displayPet.GetComponent<Transform>();
-            Vector3 scale = new Vector3(0.2f, 0.2f, 1f);
+            Vector3 scale = new Vector3(0.15f, 0.15f, 1f);
             transform.localScale = scale;
         }
     }
@@ -172,8 +170,8 @@ public class PetLibrary : MonoBehaviour {
         {
             this.sellButton.interactable = false;
             this.displayPet.SetActive(false);
-            this.petStatusText.SetActive(false);
-            this.petDescriptionText.SetActive(false);
+            this.statsTitlesObject.SetActive(false);
+            this.statsValuesObject.SetActive(false);
             this.sellButton.interactable = false;
         }
         else
