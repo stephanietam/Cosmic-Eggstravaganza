@@ -27,6 +27,8 @@ public class PetLibrary : MonoBehaviour {
 
     public Button sellButton;
 
+    public Button medicineButton;
+
     public GameObject petDescriptionText;
 
     public GameObject petStatusText;
@@ -63,7 +65,16 @@ public class PetLibrary : MonoBehaviour {
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
             SetStats(this.statsText, creature);
             SetDescription(this.descriptionText, creature);
+            if (!creature.HasHatched() || gameState.GetMedicine()<=0)
+            {
+                medicineButton.interactable = false;
+            }
         }
+        else
+        {
+            medicineButton.interactable = false;
+        }
+        
     }
 
     public void SetStats(Text text, Creature creature)
@@ -164,5 +175,18 @@ public class PetLibrary : MonoBehaviour {
         }
 
         SetDisplayPet();
+    }
+
+    public void MedicineOnClick()
+    {
+        // boost pet stats
+        GameObject creatureObject = this.creatures[this.creatureIndex];
+        Creature creature = creatureObject.GetComponent<Creature>();
+        creature.GetEnergy().AddPoints(5);
+        creature.GetAmusement().AddPoints(5);
+        creature.GetHygene().AddPoints(5);
+
+        SetDisplayPet();
+        gameState.medicine -= 1;
     }
 }

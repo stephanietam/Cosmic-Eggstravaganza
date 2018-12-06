@@ -110,7 +110,7 @@ public class NextPhaseButton : MonoBehaviour {
         img.preserveAspect = true;
 
         deadPetPopUpDesc.text = "Name: " + creature.name + "\n" +
-                                "Age: " + creature.age + " days\n" +
+                                "Age: " + creature.age/3 + " days\n" +
                                 "ToD: " + gameState.GetDateTime().ToString();
 
         deadPetPopUp.SetActive(true);
