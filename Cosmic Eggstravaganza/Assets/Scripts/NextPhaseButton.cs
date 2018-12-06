@@ -127,14 +127,14 @@ public class NextPhaseButton : MonoBehaviour {
 
         deadPetPopUp.SetActive(false);
         bgHider.SetActive(false);
-        
+
         if (deadCreatures.Count > 0)
         {
             if (!deadPetPopUp.activeSelf)
             {
                 DeadCreaturesPopUp(deadCreatures[0]);
             }
-        }      
+        }
     }
 
     public void ChangeCreatureStats(Creature creature)
@@ -156,20 +156,20 @@ public class NextPhaseButton : MonoBehaviour {
             energy.LosePoints(1);
             amusement.LosePoints(1);
 
-            creature.SetMood();
-
             if (creature.location == Area.Eat){
                 if (this.gameState.GetFood() > 0){
                     this.gameState.AddFood(-1);
-                    hunger.AddPoints(3);
+                    hunger.AddPoints(4);
                 }
-                energy.AddPoints(3);
+                energy.AddPoints(4);
             }
             if (creature.location == Area.Clean){
-                hygene.AddPoints(3);
+                hygene.AddPoints(4);
+                amusement.AddPoints(1);
             }
             if (creature.location == Area.Playground){
-                amusement.AddPoints(3);
+                amusement.AddPoints(4);
+                energy.AddPoints(1);
             }
             if (creature.location == Area.Gym){
                 System.Random random = new System.Random();
@@ -189,8 +189,11 @@ public class NextPhaseButton : MonoBehaviour {
                     intelligence.AddPoints(2);
                     Debug.Log("int is now " + intelligence.GetPoints());
                 }
+                amusement.AddPoints(1);
                 //Debug.Log("str: " + strength.GetPoints() + ", dex: " + dexterity.GetPoints() + ", int: " + intelligence.GetPoints());
             }
+
+            creature.SetMood();
         }
         creature.age += 1;
     }
