@@ -157,14 +157,22 @@ namespace Assets.Scripts
 
         void OnMouseOver()
         {
+            GameObject statsTitleObject = GameObject.Find("Stats Title Text");
+            Text statsTitleText = statsTitleObject.GetComponent<Text>();
+            statsTitleText.text = String.Format("{0,15}\n", "Name") +
+                             String.Format("{0,15}\n", "Mood") +
+                             String.Format("{0,15}\n", "Hunger") +
+                             String.Format("{0,15}\n", "Hygene") +
+                             String.Format("{0,15}\n", "Amusement") +
+                             String.Format("{0,15}\n", "Energy");
             GameObject statsTextObject = GameObject.Find("Stats Text");
             Text statsText = statsTextObject.GetComponent<Text>();
-            statsText.text = String.Format("{0}:   {1,-15}\n", "Name", this.name) +
-                             String.Format("{0}:   {1,-15}\n", "Mood", this.GetMood()) +
-                             String.Format("{0}:   {1,-15}\n", "Hunger", this.GetHunger().GetPoints().ToString()) +
-                             String.Format("{0}:   {1,-15}\n", "Hygene", this.GetHygene().GetPoints().ToString()) +
-                             String.Format("{0}:   {1,-15}\n", "Amusement",this. GetAmusement().GetPoints().ToString()) +
-                             String.Format("{0}:   {1,-15}\n", "Energy", this.GetEnergy().GetPoints().ToString());
+            statsText.text = String.Format("{0,15}\n", this.name) +
+                             String.Format("{0,15}\n", this.GetMood()) +
+                             String.Format("{0,15}\n", this.GetHunger().GetPoints().ToString()) +
+                             String.Format("{0,15}\n", this.GetHygene().GetPoints().ToString()) +
+                             String.Format("{0,15}\n", this. GetAmusement().GetPoints().ToString()) +
+                             String.Format("{0,15}\n", this.GetEnergy().GetPoints().ToString());
 
         }
 
@@ -173,6 +181,9 @@ namespace Assets.Scripts
             GameObject statsTextObject = GameObject.Find("Stats Text");
             Text statsText = statsTextObject.GetComponent<Text>();
             statsText.text = "";
+            GameObject statsTitleObject = GameObject.Find("Stats Title Text");
+            Text statsTitleText = statsTitleObject.GetComponent<Text>();
+            statsTitleText.text = "";
         }
     }
 }

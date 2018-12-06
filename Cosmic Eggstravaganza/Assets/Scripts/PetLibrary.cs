@@ -56,6 +56,7 @@ public class PetLibrary : MonoBehaviour {
             this.creatureIndex = -1;
             this.sellButton.interactable = false;
         }
+        SetTextTitles(this.statsText);
     }
 
     public void Update()
@@ -63,9 +64,9 @@ public class PetLibrary : MonoBehaviour {
         if (this.creatures.Count > 0)
         {
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
-            SetStats(this.statsText, creature);
-            SetDescription(this.descriptionText, creature);
-            if (!creature.HasHatched() || gameState.GetMedicine()<=0)
+
+            SetTextValues(this.descriptionText, creature);
+            if (!creature.HasHatched() || gameState.GetMedicine()<=0 || creature.mood != Mood.Sick)
             {
                 medicineButton.interactable = false;
             }
@@ -77,22 +78,32 @@ public class PetLibrary : MonoBehaviour {
         
     }
 
-    public void SetStats(Text text, Creature creature)
+    public void SetTextTitles(Text text)
     {
-        text.text = String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Strength", creature.GetStrength().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Dexterity", creature.GetDexterity().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Intelligence", creature.GetIntelligence().GetPoints().ToString());
+        text.text = String.Format("{0,-15}\n", "Name") +
+                    String.Format("{0,-15}\n", "Mood") +
+                    String.Format("{0,-15}\n\n", "Worth") +
+                    String.Format("{0,-15}\n", "Hunger") +
+                    String.Format("{0,-15}\n", "Hygene") +
+                    String.Format("{0,-15}\n", "Amusement") +
+                    String.Format("{0,-15}\n", "Energy") +
+                    String.Format("{0,-15}\n", "Strength") +
+                    String.Format("{0,-15}\n", "Dexterity") +
+                    String.Format("{0,-15}\n", "Intelligence");
     }
 
-    public void SetDescription(Text text, Creature creature)
+    public void SetTextValues(Text text, Creature creature)
     {
-        text.text = String.Format("{0,15}   {1,15}\n", "Name", creature.name) +
-                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood()) +
-                    String.Format("{0,15}   {1,15}\n", "Worth", creature.GetWorth());
+        text.text = String.Format("{0,15}\n", creature.name) +
+                    String.Format("{0,15}\n", creature.mood) +
+                    String.Format("{0,15}\n\n", creature.GetWorth()) +
+                    String.Format("{0,15}\n", creature.GetHunger().GetPoints().ToString()) +
+                    String.Format("{0,15}\n", creature.GetHygene().GetPoints().ToString()) +
+                    String.Format("{0,15}\n", creature.GetAmusement().GetPoints().ToString()) +
+                    String.Format("{0,15}\n", creature.GetEnergy().GetPoints().ToString()) +
+                    String.Format("{0,15}\n", creature.GetStrength().GetPoints().ToString()) +
+                    String.Format("{0,15}\n", creature.GetDexterity().GetPoints().ToString()) +
+                    String.Format("{0,15}\n", creature.GetIntelligence().GetPoints().ToString());
     }
 
     public void RightButtonOnClick()
@@ -136,7 +147,7 @@ public class PetLibrary : MonoBehaviour {
             this.noPet.SetActive(false);
             // Show the stats for the displayed creature
             Creature creature = this.creatures[this.creatureIndex].GetComponent<Creature>();
-            SetStats(this.statsText, creature);
+            SetTextValues(this.statsText, creature);
             Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
 
             // Set display pet image
