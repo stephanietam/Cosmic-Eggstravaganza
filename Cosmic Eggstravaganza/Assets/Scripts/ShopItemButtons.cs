@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShopItemButtons : MonoBehaviour
 {
@@ -96,6 +97,20 @@ public class ShopItemButtons : MonoBehaviour
             Popup("You don't have enough stars!");
         }
     }
+
+	public void BuySpaceship()
+	{
+		if (this.gameState.GetStars() - 500 >= 0)
+		{
+			// buying food
+			this.gameState.AddStars(-500);
+			SceneManager.LoadScene("OutroScene");
+		}
+		else
+		{
+			Popup("You don't have enough stars!");
+		}
+	}
 
     private void Popup(string message)
     {
