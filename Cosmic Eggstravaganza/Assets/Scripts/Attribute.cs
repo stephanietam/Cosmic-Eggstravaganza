@@ -10,9 +10,9 @@ namespace Assets.Scripts
         private int currentPoints;
         private readonly int totalPoints;
 
-        public Attribute(int totalPoints)
+        public Attribute(int startPoints, int totalPoints)
         {
-            this.currentPoints = totalPoints;
+            this.currentPoints = startPoints;
             this.totalPoints = totalPoints;
         }
 

@@ -9,6 +9,12 @@ public class NextPhaseButton : MonoBehaviour {
 
     public Text dateTimeText;
 
+    public GameObject deadPetPopUp;
+    public Text deadPetPopUpDesc;
+    public GameObject deadPetPopImg;
+
+    public GameObject bgHider;
+
     void Start()
     {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
@@ -21,12 +27,25 @@ public class NextPhaseButton : MonoBehaviour {
         // Decrease stats for all pets
         if (gameState.creatureCount > 0)
         {
-            List<Creature> creatures = gameState.GetCreatures();
-            for (int i = 0; i < creatures.Count; ++i)
+            List<GameObject> creatureObjects = gameState.GetCreatureObjects();
+            for (int i = 0; i < creatureObjects.Count; ++i)
             {
-                Creature creature = creatures[i];
+                Creature creature = creatureObjects[i].GetComponent<Creature>();
                 // change stats
                 ChangeCreatureStats(creature);
+
+                // Check if creature is dead
+                CheckDeath(creatureObjects[i], gameState.deadCreatures);
+            }
+        }
+
+        // popup for dead creatures
+        List<GameObject> deadCreatures = gameState.deadCreatures;
+        if (deadCreatures.Count > 0)
+        {
+            if (!deadPetPopUp.activeSelf)
+            {
+                DeadCreaturesPopUp(deadCreatures[0]);
             }
         }
 
@@ -43,9 +62,9 @@ public class NextPhaseButton : MonoBehaviour {
                 creature.Hatch();
 
                 // Set new image of pet
-                List<string> imageFiles = new List<string> { "1", "2", "3", "4", "5", "6a", "6b", "6c", "7" };
+                List<string> imageFiles = new List<string> { "1", "2", "3", "4", "5", "6a", "6b", "6c", "7", "8", "9", "10" };
                 System.Random random = new System.Random();
-                int randomImageInt = random.Next(0, 9);
+                int randomImageInt = random.Next(0, 12);
 
                 Texture2D tex = Resources.Load<Texture2D>(imageFiles[randomImageInt]) as Texture2D;
                 Sprite sprite = new Sprite();
@@ -70,6 +89,54 @@ public class NextPhaseButton : MonoBehaviour {
         }
     }
 
+    public void CheckDeath(GameObject creature, List<GameObject> deadCreatures)
+    {
+        Creature c = creature.GetComponent<Creature>();
+        if (c.GetHunger().GetPoints() <= 0)
+        {
+            // Pet is dead
+            deadCreatures.Add(creature);
+        }
+    }
+
+    private void DeadCreaturesPopUp(GameObject creatureObject)
+    {
+        Creature creature = creatureObject.GetComponent<Creature>();
+        Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
+
+        // Set pet image
+        Image img = this.deadPetPopImg.GetComponent<Image>();
+        img.sprite = creatureSprite;
+        img.preserveAspect = true;
+
+        deadPetPopUpDesc.text = "Name: " + creature.name + "\n" +
+                                "Age: " + creature.age + " days\n" +
+                                "ToD: " + gameState.GetDateTime().ToString();
+
+        deadPetPopUp.SetActive(true);
+        bgHider.SetActive(true);
+    }
+
+    public void ClosePopUp()
+    {
+        List<GameObject> deadCreatures = gameState.deadCreatures;
+        gameState.RemoveCreature(deadCreatures[0]);
+        GameObject dead = GameObject.Find(deadCreatures[0].name);
+        Destroy(dead);
+        deadCreatures.Remove(deadCreatures[0]);
+
+        deadPetPopUp.SetActive(false);
+        bgHider.SetActive(false);
+        
+        if (deadCreatures.Count > 0)
+        {
+            if (!deadPetPopUp.activeSelf)
+            {
+                DeadCreaturesPopUp(deadCreatures[0]);
+            }
+        }      
+    }
+
     public void ChangeCreatureStats(Creature creature)
     {
         if (creature.HasHatched())
@@ -79,34 +146,50 @@ public class NextPhaseButton : MonoBehaviour {
             Attribute hunger = creature.GetHunger();
             Attribute energy = creature.GetEnergy();
             Attribute amusement = creature.GetAmusement();
+
             Attribute strength = creature.GetStrength();
             Attribute dexterity = creature.GetDexterity();
             Attribute intelligence = creature.GetIntelligence();
-            List<Attribute> attributes = new List<Attribute>{strength,dexterity,intelligence};
 
             hygene.LosePoints(1);
             hunger.LosePoints(1);
             energy.LosePoints(1);
             amusement.LosePoints(1);
+
             creature.SetMood();
 
             if (creature.location == Area.Eat){
                 if (this.gameState.GetFood() > 0){
-                  this.gameState.AddFood(-1);
-                  hunger.AddPoints(3);
+                    this.gameState.AddFood(-1);
+                    hunger.AddPoints(3);
                 }
                 energy.AddPoints(3);
             }
             if (creature.location == Area.Clean){
-              hygene.AddPoints(3);
+                hygene.AddPoints(3);
             }
             if (creature.location == Area.Playground){
-              amusement.AddPoints(3);
+                amusement.AddPoints(3);
             }
             if (creature.location == Area.Gym){
-              System.Random random = new System.Random();
-              int randomStat = random.Next(0, 3);
-              attributes[randomStat].AddPoints(2);
+                System.Random random = new System.Random();
+                int randomStat = random.Next(0, 3);
+                if (randomStat == 0)
+                {
+                    strength.AddPoints(2);
+                    Debug.Log("str is now " + strength.GetPoints());
+                }
+                else if (randomStat == 1)
+                {
+                    dexterity.AddPoints(2);
+                    Debug.Log("dex is now " + dexterity.GetPoints());
+                }
+                else if (randomStat == 2)
+                {
+                    intelligence.AddPoints(2);
+                    Debug.Log("int is now " + intelligence.GetPoints());
+                }
+                //Debug.Log("str: " + strength.GetPoints() + ", dex: " + dexterity.GetPoints() + ", int: " + intelligence.GetPoints());
             }
         }
         creature.age += 1;
@@ -118,6 +201,6 @@ public class NextPhaseButton : MonoBehaviour {
         dateTime.NextPhase();
 
         dateTimeText.text = dateTime.ToString();
-        Debug.Log(dateTimeText.text);
+        //Debug.Log(dateTimeText.text);
     }
 }

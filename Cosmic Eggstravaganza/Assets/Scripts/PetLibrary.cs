@@ -27,7 +27,9 @@ public class PetLibrary : MonoBehaviour {
 
     public Button sellButton;
 
-    public GameObject petText;
+    public GameObject petDescriptionText;
+
+    public GameObject petStatusText;
 
     void Start() {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
@@ -43,12 +45,14 @@ public class PetLibrary : MonoBehaviour {
 
             this.creatureIndex = 0;
             SetDisplayPet();
+            this.sellButton.interactable = true;
         }
         else
         {
             // Show no pet message
             this.noPet.SetActive(true);
             this.creatureIndex = -1;
+            this.sellButton.interactable = false;
         }
     }
 
@@ -67,13 +71,17 @@ public class PetLibrary : MonoBehaviour {
         text.text = String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString());
+                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Strength", creature.GetStrength().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Dexterity", creature.GetDexterity().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Intelligence", creature.GetIntelligence().GetPoints().ToString());
     }
 
     public void SetDescription(Text text, Creature creature)
     {
         text.text = String.Format("{0,15}   {1,15}\n", "Name", creature.name) +
-                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood());
+                    String.Format("{0,15}   {1,15}\n", "Mood", creature.GetMood()) +
+                    String.Format("{0,15}   {1,15}\n", "Worth", creature.GetWorth());
     }
 
     public void RightButtonOnClick()
@@ -134,7 +142,7 @@ public class PetLibrary : MonoBehaviour {
     public void SellPet()
     {
         GameObject creatureObject = this.creatures[this.creatureIndex];
-        this.gameState.stars += creatureObject.GetComponent<Creature>().worth;
+        this.gameState.stars += creatureObject.GetComponent<Creature>().GetWorth();
 
         this.gameState.RemoveCreature(creatureObject);
 
@@ -142,8 +150,9 @@ public class PetLibrary : MonoBehaviour {
         {
             this.sellButton.interactable = false;
             this.displayPet.SetActive(false);
-            this.petText.SetActive(false);
-
+            this.petStatusText.SetActive(false);
+            this.petDescriptionText.SetActive(false);
+            this.sellButton.interactable = false;
         }
         else
         {
@@ -152,7 +161,6 @@ public class PetLibrary : MonoBehaviour {
             {
                 this.creatureIndex = 0;
             }
-
         }
 
         SetDisplayPet();

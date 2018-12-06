@@ -19,6 +19,8 @@ namespace Assets.Scripts {
 
         public List<GameObject> creatureObjects;
 
+        public List<GameObject> deadCreatures;
+
         public GameState()
         {
             this.dateTime = new DateTime();
@@ -27,7 +29,8 @@ namespace Assets.Scripts {
             this.medicine = 0;
             this.creatureCount = 0;
             this.creatureObjects = new List<GameObject>();
-        }
+            this.deadCreatures = new List<GameObject>();
+    }
 
         public void Start()
         {
@@ -140,7 +143,7 @@ namespace Assets.Scripts {
             v.y = 5f;
             collider.size = v;
 
-			// Set Rigidbody optinos
+			// Set Rigidbody options
 			Rigidbody2D rb = newCreature.GetComponent<Rigidbody2D>();
 			rb.isKinematic = true;
 
