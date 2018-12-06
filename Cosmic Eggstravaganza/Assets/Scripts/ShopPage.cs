@@ -7,6 +7,6 @@ public class ShopPage : MonoBehaviour {
 	void Start () {
         GameObject audioSourceObject = GameObject.FindGameObjectWithTag("BG Audio");
         AudioSource backgroundMusic = audioSourceObject.GetComponent<AudioSource>();
-        backgroundMusic.Stop();
+        backgroundMusic.Pause();
     }
 }
