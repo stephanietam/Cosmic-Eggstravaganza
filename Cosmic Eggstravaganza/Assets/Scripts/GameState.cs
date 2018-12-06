@@ -143,7 +143,7 @@ namespace Assets.Scripts {
             v.y = 5f;
             collider.size = v;
 
-			// Set Rigidbody optinos
+			// Set Rigidbody options
 			Rigidbody2D rb = newCreature.GetComponent<Rigidbody2D>();
 			rb.isKinematic = true;
 

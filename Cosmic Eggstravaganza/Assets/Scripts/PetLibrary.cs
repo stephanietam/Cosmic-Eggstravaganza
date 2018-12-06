@@ -27,7 +27,9 @@ public class PetLibrary : MonoBehaviour {
 
     public Button sellButton;
 
-    public GameObject petText;
+    public GameObject petDescriptionText;
+
+    public GameObject petStatusText;
 
     void Start() {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
@@ -69,7 +71,10 @@ public class PetLibrary : MonoBehaviour {
         text.text = String.Format("{0,15}   {1,15}\n", "Hunger", creature.GetHunger().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Hygene", creature.GetHygene().GetPoints().ToString()) +
                     String.Format("{0,15}   {1,15}\n", "Amusement", creature.GetAmusement().GetPoints().ToString()) +
-                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString());
+                    String.Format("{0,15}   {1,15}\n", "Energy", creature.GetEnergy().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Strength", creature.GetStrength().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Dexterity", creature.GetDexterity().GetPoints().ToString()) +
+                    String.Format("{0,15}   {1,15}\n", "Intelligence", creature.GetIntelligence().GetPoints().ToString());
     }
 
     public void SetDescription(Text text, Creature creature)
@@ -145,7 +150,8 @@ public class PetLibrary : MonoBehaviour {
         {
             this.sellButton.interactable = false;
             this.displayPet.SetActive(false);
-            this.petText.SetActive(false);
+            this.petStatusText.SetActive(false);
+            this.petDescriptionText.SetActive(false);
             this.sellButton.interactable = false;
         }
         else

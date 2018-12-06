@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -34,13 +36,14 @@ namespace Assets.Scripts
 
         public Creature()
         {
-            this.hunger = new Attribute(10);
-            this.hygene = new Attribute(10);
-            this.energy = new Attribute(10);
-            this.amusement = new Attribute(10);
-            this.strength = new Attribute(0);
-            this.dexterity = new Attribute(0);
-            this.intelligence = new Attribute(0);
+            this.hunger = new Attribute(10,10);
+            this.hygene = new Attribute(10,10);
+            this.energy = new Attribute(10,10);
+            this.amusement = new Attribute(10,10);
+
+            this.strength = new Attribute(0,100);
+            this.dexterity = new Attribute(0,100);
+            this.intelligence = new Attribute(0,100);
 
             this.age = 0;
             this.hatched = false;
@@ -104,17 +107,12 @@ namespace Assets.Scripts
 
         public int GetWorth()
         {
-            this.SetWorth();
+            this.worth = 10 + 10*this.strength.GetPoints() + 10*this.dexterity.GetPoints() + 10*this.intelligence.GetPoints();
+            if (this.mood == Mood.Sick)
+            {
+                this.worth /= 2;
+            }
             return this.worth;
-        }
-
-        public void SetWorth()
-        {
-          this.worth = 10+10*this.strength.GetPoints()+10*this.dexterity.GetPoints()+10*this.intelligence.GetPoints();
-          if (this.mood == Mood.Sick)
-          {
-            this.worth /= 2;
-          }
         }
 
         public void SetMood()
@@ -151,20 +149,30 @@ namespace Assets.Scripts
             }
         }
 
-        public void DecreaseAttribute(Attribute attribute)
-        {
-            attribute.LosePoints(1);
-        }
-
-        public void IncreaseAttribute(Attribute attribute)
-        {
-            attribute.AddPoints(1);
-        }
-
         public static Creature Instance;
         void Awake()
         {
             DontDestroyOnLoad(transform.gameObject);
+        }
+
+        void OnMouseOver()
+        {
+            GameObject statsTextObject = GameObject.Find("Stats Text");
+            Text statsText = statsTextObject.GetComponent<Text>();
+            statsText.text = String.Format("{0}:   {1,-15}\n", "Name", this.name) +
+                             String.Format("{0}:   {1,-15}\n", "Mood", this.GetMood()) +
+                             String.Format("{0}:   {1,-15}\n", "Hunger", this.GetHunger().GetPoints().ToString()) +
+                             String.Format("{0}:   {1,-15}\n", "Hygene", this.GetHygene().GetPoints().ToString()) +
+                             String.Format("{0}:   {1,-15}\n", "Amusement",this. GetAmusement().GetPoints().ToString()) +
+                             String.Format("{0}:   {1,-15}\n", "Energy", this.GetEnergy().GetPoints().ToString());
+
+        }
+
+        void OnMouseExit()
+        {
+            GameObject statsTextObject = GameObject.Find("Stats Text");
+            Text statsText = statsTextObject.GetComponent<Text>();
+            statsText.text = "";
         }
     }
 }
