@@ -27,10 +27,10 @@ public class FarmScript : MonoBehaviour {
         this.gameState = gameObject.GetComponent<GameState>();
         SetBackground();
 
-
+        // unpause the background music after coming from shop
         GameObject audioSourceObject = GameObject.FindGameObjectWithTag("BG Audio");
         AudioSource backgroundMusic = audioSourceObject.GetComponent<AudioSource>();
-        backgroundMusic.UnPause();
+        backgroundMusic.UnPause(); 
     }
 
     private void SetBackground()

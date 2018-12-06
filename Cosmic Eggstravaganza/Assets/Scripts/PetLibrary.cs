@@ -43,12 +43,14 @@ public class PetLibrary : MonoBehaviour {
 
             this.creatureIndex = 0;
             SetDisplayPet();
+            this.sellButton.interactable = true;
         }
         else
         {
             // Show no pet message
             this.noPet.SetActive(true);
             this.creatureIndex = -1;
+            this.sellButton.interactable = false;
         }
     }
 
@@ -144,7 +146,7 @@ public class PetLibrary : MonoBehaviour {
             this.sellButton.interactable = false;
             this.displayPet.SetActive(false);
             this.petText.SetActive(false);
-
+            this.sellButton.interactable = false;
         }
         else
         {
@@ -153,7 +155,6 @@ public class PetLibrary : MonoBehaviour {
             {
                 this.creatureIndex = 0;
             }
-
         }
 
         SetDisplayPet();

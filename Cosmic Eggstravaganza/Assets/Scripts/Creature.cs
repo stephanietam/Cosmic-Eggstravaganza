@@ -28,6 +28,8 @@ namespace Assets.Scripts
 
         public bool healthy;
 
+        public bool alive;
+
         public int worth;
 
         public Creature()
@@ -45,6 +47,8 @@ namespace Assets.Scripts
             this.location = Area.Stable;
             this.mood = Mood.Happy;
             this.healthy = true;
+            this.alive = true;
+
             this.worth = 10;
         }
 

@@ -9,6 +9,12 @@ public class NextPhaseButton : MonoBehaviour {
 
     public Text dateTimeText;
 
+    public GameObject deadPetPopUp;
+    public Text deadPetPopUpDesc;
+    public GameObject deadPetPopImg;
+
+    public GameObject bgHider;
+
     void Start()
     {
         GameObject gameObject = GameObject.FindGameObjectWithTag("GameState");
@@ -21,12 +27,25 @@ public class NextPhaseButton : MonoBehaviour {
         // Decrease stats for all pets
         if (gameState.creatureCount > 0)
         {
-            List<Creature> creatures = gameState.GetCreatures();
-            for (int i = 0; i < creatures.Count; ++i)
+            List<GameObject> creatureObjects = gameState.GetCreatureObjects();
+            for (int i = 0; i < creatureObjects.Count; ++i)
             {
-                Creature creature = creatures[i];
+                Creature creature = creatureObjects[i].GetComponent<Creature>();
                 // change stats
                 ChangeCreatureStats(creature);
+
+                // Check if creature is dead
+                CheckDeath(creatureObjects[i], gameState.deadCreatures);
+            }
+        }
+
+        // popup for dead creatures
+        List<GameObject> deadCreatures = gameState.deadCreatures;
+        if (deadCreatures.Count > 0)
+        {
+            if (!deadPetPopUp.activeSelf)
+            {
+                DeadCreaturesPopUp(deadCreatures[0]);
             }
         }
 
@@ -68,6 +87,55 @@ public class NextPhaseButton : MonoBehaviour {
                 collider.size = v;
             }
         }
+    }
+
+    public void CheckDeath(GameObject creature, List<GameObject> deadCreatures)
+    {
+        Creature c = creature.GetComponent<Creature>();
+        if (c.GetHunger().GetPoints() <= 0)
+        {
+            // Pet is dead
+            deadCreatures.Add(creature);
+            Debug.Log("creature added to deadcreatures");
+        }
+    }
+
+    private void DeadCreaturesPopUp(GameObject creatureObject)
+    {
+        Creature creature = creatureObject.GetComponent<Creature>();
+        Sprite creatureSprite = creature.GetComponent<SpriteRenderer>().sprite;
+
+        // Set display pet image
+        Image img = this.deadPetPopImg.GetComponent<Image>();
+        img.sprite = creatureSprite;
+        img.preserveAspect = true;
+
+        deadPetPopUpDesc.text = "Name: " + creature.name + "\n" +
+                                "Age: " + creature.age + " days\n" +
+                                "ToD: " + gameState.GetDateTime().ToString() + "\n";
+
+        deadPetPopUp.SetActive(true);
+        bgHider.SetActive(true);
+    }
+
+    public void ClosePopUp()
+    {
+        List<GameObject> deadCreatures = gameState.deadCreatures;
+        gameState.RemoveCreature(deadCreatures[0]);
+        GameObject dead = GameObject.Find(deadCreatures[0].name);
+        Destroy(dead);
+        deadCreatures.Remove(deadCreatures[0]);
+
+        deadPetPopUp.SetActive(false);
+        bgHider.SetActive(false);
+        
+        if (deadCreatures.Count > 0)
+        {
+            if (!deadPetPopUp.activeSelf)
+            {
+                DeadCreaturesPopUp(deadCreatures[0]);
+            }
+        }      
     }
 
     public void ChangeCreatureStats(Creature creature)
