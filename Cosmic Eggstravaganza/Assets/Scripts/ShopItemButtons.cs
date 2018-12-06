@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ShopItemButtons : MonoBehaviour
 {
@@ -99,11 +100,11 @@ public class ShopItemButtons : MonoBehaviour
 
 	public void BuySpaceship()
 	{
-		if (this.gameState.GetStars() - 10000 >= 0)
+		if (this.gameState.GetStars() - 500 >= 0)
 		{
 			// buying food
-			this.gameState.AddStars(-10000);
-			Popup("You bought a spaceship!");
+			this.gameState.AddStars(-500);
+			SceneManager.LoadScene("OutroScene");
 		}
 		else
 		{
