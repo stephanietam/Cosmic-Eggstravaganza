@@ -22,7 +22,7 @@ public class OutroNextButton : MonoBehaviour {
 	public void OnClick()
 	{
 		if(index == lines.Length){
-			SceneManager.LoadScene("EndScene");
+			SceneManager.LoadScene("MenuScene");
 		}else{
 			OutroText.text = lines[index++];
 		}
