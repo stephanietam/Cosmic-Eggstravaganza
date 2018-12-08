@@ -23,6 +23,9 @@ public class OutroNextButton : MonoBehaviour {
 	{
 		if(index == lines.Length){
 			SceneManager.LoadScene("MenuScene");
+
+			Destroy(GameObject.FindGameObjectWithTag("GameState"));
+			Destroy(GameObject.FindGameObjectWithTag("BG Audio"));
 		}else{
 			OutroText.text = lines[index++];
 		}

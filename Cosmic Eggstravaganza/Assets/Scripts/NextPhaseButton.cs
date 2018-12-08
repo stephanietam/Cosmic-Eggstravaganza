@@ -161,15 +161,16 @@ public class NextPhaseButton : MonoBehaviour {
                     this.gameState.AddFood(-1);
                     hunger.AddPoints(4);
                 }
-                energy.AddPoints(4);
             }
+			if (creature.location == Area.Stable){
+				energy.AddPoints(4);
+			}
             if (creature.location == Area.Clean){
                 hygene.AddPoints(4);
-                amusement.AddPoints(1);
+				energy.AddPoints(1);
             }
             if (creature.location == Area.Playground){
                 amusement.AddPoints(4);
-                energy.AddPoints(1);
             }
             if (creature.location == Area.Gym){
                 System.Random random = new System.Random();
@@ -186,7 +187,7 @@ public class NextPhaseButton : MonoBehaviour {
                 {
                     intelligence.AddPoints(2);
                 }
-                amusement.AddPoints(1);
+				amusement.AddPoints(1);
             }
 
             creature.SetMood();

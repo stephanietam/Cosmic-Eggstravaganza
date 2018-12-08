@@ -17,8 +17,8 @@
 
         public DateTime()
         {
-            this.day = 1;
-            this.phase = Phases.Morning;
+			this.day = 1;
+			this.phase = Phases.Morning;
         }
 
         /// <summary>
