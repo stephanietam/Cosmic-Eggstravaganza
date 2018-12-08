@@ -105,6 +105,26 @@ namespace Assets.Scripts
           return this.intelligence;
         }
 
+        public string GetArea()
+        {
+          if (this.location == Area.Stable){
+            return "Stable";
+          }
+          if (this.location == Area.Clean){
+            return "Cleaning";
+          }
+          if (this.location == Area.Eat){
+            return "Eating Hall";
+          }
+          if (this.location == Area.Playground){
+            return "Playground";
+          }
+          if (this.location == Area.Gym){
+            return "Gym";
+          }
+          return "None";
+        }
+
         public int GetWorth()
         {
             this.worth = 10 + 10*this.strength.GetPoints() + 10*this.dexterity.GetPoints() + 10*this.intelligence.GetPoints();
@@ -164,7 +184,8 @@ namespace Assets.Scripts
                              String.Format("{0,15}\n", "Hunger") +
                              String.Format("{0,15}\n", "Hygene") +
                              String.Format("{0,15}\n", "Amusement") +
-                             String.Format("{0,15}\n", "Energy");
+                             String.Format("{0,15}\n", "Energy") +
+                             String.Format("{0,15}\n", "Area");
             GameObject statsTextObject = GameObject.Find("Stats Text");
             Text statsText = statsTextObject.GetComponent<Text>();
             statsText.text = String.Format("{0,15}\n", this.name) +
@@ -172,7 +193,8 @@ namespace Assets.Scripts
                              String.Format("{0,15}\n", this.GetHunger().GetPoints().ToString()) +
                              String.Format("{0,15}\n", this.GetHygene().GetPoints().ToString()) +
                              String.Format("{0,15}\n", this. GetAmusement().GetPoints().ToString()) +
-                             String.Format("{0,15}\n", this.GetEnergy().GetPoints().ToString());
+                             String.Format("{0,15}\n", this.GetEnergy().GetPoints().ToString()) +
+                             String.Format("{0,15}\n", this.GetArea());
 
         }
 
