@@ -3364,7 +3364,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Ready to go home?
 
-    500 Stars'
+    1000 Stars'
 --- !u!222 &1939516926
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3555,7 +3555,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Buy more eggs to farm more animals!
 
-    50 Stars'
+    100 Stars'
 --- !u!222 &2016463200
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -49,10 +49,10 @@ public class ShopItemButtons : MonoBehaviour
 
     public void BuyEgg()
     {
-        if (this.gameState.GetStars() - 50 >= 0)
+        if (this.gameState.GetStars() - 100 >= 0)
         {
             // buying egg
-            this.gameState.AddStars(-50);
+            this.gameState.AddStars(-100);
 
             // Create gameobject
             this.gameState.CreateCreature();
@@ -100,10 +100,10 @@ public class ShopItemButtons : MonoBehaviour
 
 	public void BuySpaceship()
 	{
-		if (this.gameState.GetStars() - 500 >= 0)
+		if (this.gameState.GetStars() - 1000 >= 0)
 		{
 			// buying food
-			this.gameState.AddStars(-500);
+  			this.gameState.AddStars(-1000);
 			SceneManager.LoadScene("OutroScene");
 		}
 		else
