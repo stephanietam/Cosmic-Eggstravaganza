@@ -12,6 +12,9 @@ public class IntroNextButton : MonoBehaviour {
     public Text IntroText;
     private string[] lines;
     private int index = 0;
+    public GameObject IntroImage1;
+    public GameObject IntroImage2;
+    public GameObject IntroImage3;
 
     public void Start()
     {
@@ -26,6 +29,14 @@ public class IntroNextButton : MonoBehaviour {
         SceneManager.LoadScene("FarmScene");
       }else{
         IntroText.text = lines[index++];
+        if (index == 8){
+          IntroImage1.SetActive(false);
+          IntroImage2.SetActive(true);
+        }
+        if (index == 9){
+          IntroImage2.SetActive(false);
+          IntroImage3.SetActive(true);
+        }
       }
     }
 
