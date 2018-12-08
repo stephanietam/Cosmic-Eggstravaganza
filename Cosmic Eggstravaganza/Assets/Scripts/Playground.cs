@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets.Scripts;
 
 public class Playground : MonoBehaviour {
+	int colliders = 0;
 	public AreaTracking areaTracker;
 
 	void OnTriggerEnter2D(Collider2D col) {
@@ -16,8 +17,7 @@ public class Playground : MonoBehaviour {
 		Creature creature = col.gameObject.GetComponent<Creature>();
 		if (creature.location == Area.Playground) {
 			creature.location = Area.None;
-			areaTracker.setArea(Area.None);
+			areaTracker.setArea (Area.None);
 		}
 	}
-
 }

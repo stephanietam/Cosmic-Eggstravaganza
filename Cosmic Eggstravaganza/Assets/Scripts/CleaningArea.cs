@@ -4,17 +4,8 @@ using UnityEngine;
 using Assets.Scripts;
 
 public class CleaningArea : MonoBehaviour {
+	int colliders = 0;
 	public AreaTracking areaTracker;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnTriggerEnter2D(Collider2D col) {
 		Creature creature = col.gameObject.GetComponent<Creature>();
@@ -23,10 +14,10 @@ public class CleaningArea : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D col) {
-		Creature creature = col.gameObject.GetComponent<Creature> ();
+		Creature creature = col.gameObject.GetComponent<Creature>();
 		if (creature.location == Area.Clean) {
 			creature.location = Area.None;
-			areaTracker.setArea(Area.None);
+			areaTracker.setArea (Area.None);
 		}
 	}
 }

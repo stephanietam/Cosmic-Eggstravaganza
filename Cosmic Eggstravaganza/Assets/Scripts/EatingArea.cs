@@ -5,6 +5,7 @@ using Assets.Scripts;
 
 public class EatingArea : MonoBehaviour
 {
+	int colliders = 0;
 	public AreaTracking areaTracker;
 
 	void OnTriggerEnter2D(Collider2D col) {
@@ -17,7 +18,7 @@ public class EatingArea : MonoBehaviour
 		Creature creature = col.gameObject.GetComponent<Creature>();
 		if (creature.location == Area.Eat) {
 			creature.location = Area.None;
-			areaTracker.setArea(Area.None);
+			areaTracker.setArea (Area.None);
 		}
 	}
 }
