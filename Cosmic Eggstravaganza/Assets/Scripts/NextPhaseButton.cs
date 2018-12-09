@@ -72,9 +72,24 @@ public class NextPhaseButton : MonoBehaviour {
                 creature.Hatch();
 
                 // Set new image of pet
-                List<string> imageFiles = new List<string> { "1", "2", "3", "4", "5", "6a", "6b", "6c", "7", "8", "9", "10" };
+                List<string> imageFiles = new List<string> { "1", "2", "3", "4", "5", "6a", "6b", "6c", "7", "8", "9", "10", "11" };
+                Dictionary<int,string> speciesName = new Dictionary<int, string>() {
+                    { 0, "Plump Man" },
+                    { 1, "Dropling" },
+                    { 2, "Glowblob" },
+                    { 3, "Radishead" },
+                    { 4, "Bloated Kitty" },
+                    { 5, "Pink Galaxy Fluff" },
+                    { 6, "Blue Galaxy Fluff" },
+                    { 7, "Green Galaxy Fluff" },
+                    { 8, "Cloudfly" },
+                    { 9, "Alpacorn" },
+                    { 10, "Boomlegs" },
+                    { 11, "Nomclopse" },
+                    { 12, "Emobird" } };
                 System.Random random = new System.Random();
-                int randomImageInt = random.Next(0, 12);
+                int randomImageInt = random.Next(0, 13);
+                creature.name = speciesName[randomImageInt] + " " + ++this.gameState.speciesCount[randomImageInt];
 
                 Texture2D tex = Resources.Load<Texture2D>(imageFiles[randomImageInt]) as Texture2D;
                 Sprite sprite = new Sprite();

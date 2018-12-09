@@ -21,6 +21,8 @@ namespace Assets.Scripts {
 
 		public List<GameObject> deadCreatures;
 
+        public Dictionary<int, int> speciesCount; 
+
 		public GameState()
 		{
 			this.dateTime = new DateTime();
@@ -30,6 +32,7 @@ namespace Assets.Scripts {
 			this.creatureCount = 0;
 			this.creatureObjects = new List<GameObject>();
 			this.deadCreatures = new List<GameObject>();
+            this.speciesCount = new Dictionary<int, int>() { { 0,0 }, { 1,0 }, { 2,0 }, { 3, 0 }, { 4, 0 }, { 5, 0 }, { 6, 0 }, { 7, 0 }, { 8, 0 }, { 9, 0 }, { 10, 0 }, { 11, 0 }, { 12, 0 } };
 		}
 
 		public void Start()
@@ -117,7 +120,7 @@ namespace Assets.Scripts {
 		public void CreateCreature()
 		{
 			// Create gameobject
-			GameObject newCreature = new GameObject("Creature " + this.creatureCount++);
+			GameObject newCreature = new GameObject("Egg " + ++this.creatureCount);
 			newCreature.AddComponent<SpriteRenderer>();
 			newCreature.AddComponent<CapsuleCollider2D>();
 			newCreature.AddComponent<Rigidbody2D>();
