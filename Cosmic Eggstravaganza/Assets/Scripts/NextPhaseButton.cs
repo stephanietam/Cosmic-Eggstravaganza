@@ -32,7 +32,7 @@ public class NextPhaseButton : MonoBehaviour {
             for (int i = 0; i < creatureObjects.Count; ++i)
             {
                 Creature creature = creatureObjects[i].GetComponent<Creature>();
-                
+
                 // change stats
                 ChangeCreatureStats(creature);
 
@@ -183,6 +183,7 @@ public class NextPhaseButton : MonoBehaviour {
 
             if (creature.location == Area.Stable){
                 energy.AddPoints(4);
+                hunger.AddPoints(1);
             }
             if (creature.location == Area.Eat)
             {
@@ -190,6 +191,7 @@ public class NextPhaseButton : MonoBehaviour {
                 {
                     this.gameState.AddFood(-1);
                     hunger.AddPoints(4);
+                    energy.AddPoints(2);
                 }
             }
             if (creature.location == Area.Clean){

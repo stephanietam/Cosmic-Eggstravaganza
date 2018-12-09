@@ -12,7 +12,9 @@ Hesitantly, you look up, expecting some kind of alien, only to see another human
 Upon seeing your spaceship, your tears involuntarily well up.
 After decades with your treasured ship, you finally have to find a replacement. You can tell from looking around that there's no ship you can buy here on par with your old one. You'll have to find a way home, but how?
 "Welcome to Asteroid Colony 73! Or, at least, that is what it was supposed to be. I'm the only one left here, but don't worry, we'll find a way to get you back. Follow me."
-The kind stranger brings you back to his shop nearby. Most of his shelves hold baskets of giant eggs, about ten times the size of those back home on Earth. And most of the others have huge bags of strange blue pebbles. The rest of his displays are stocked with strange bottles, random items, and rocks. After talking with the kind stranger for a while, it all finally made sense.
+The kind stranger brings you back to his shop nearby. Most of his shelves hold baskets of giant eggs, about ten times the size of those back home on Earth.
+Most of the others have huge bags of strange blue pebbles. The rest of his displays are stocked with strange bottles, random items, and rocks.
+After talking with the kind stranger for a while, it all finally made sense.
 "This colony was supposed to be a space farm where we raised rare space creatures, but things fell apart. There's a bunch of buildings on the West side of the asteroid where the colony was supposed to be built."
 "Tomorrow, you can pick up where they left off and raise creatures there. I’ll give you this egg and some feed to start off, but tonight you should just rest. Raise and sell enough of these guys to passing traders, and you’ll get enough money to buy a ticket home in no time."
 ...

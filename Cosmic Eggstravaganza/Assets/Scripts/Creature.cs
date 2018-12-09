@@ -132,6 +132,10 @@ namespace Assets.Scripts
             {
                 this.worth /= 2;
             }
+            if (this.mood == Mood.Happy)
+            {
+              this.worth *= 2;
+            }
             return this.worth;
         }
 
@@ -141,27 +145,33 @@ namespace Assets.Scripts
             {
                 this.healthy = true;
                 this.mood = Mood.Happy;
+                return;
             }
             else if (this.hunger.GetPoints() < 3 && this.hygene.GetPoints() < 3 && this.energy.GetPoints() < 3)
             {
                 this.healthy = false;
                 this.mood = Mood.Sick;
+                return;
             }
             else if (this.hunger.GetPoints() < 4)
             {
                 this.mood = Mood.Hungry;
+                return;
             }
             else if (this.energy.GetPoints() < 4)
             {
                 this.mood = Mood.Sleepy;
+                return;
             }
             else if (this.amusement.GetPoints() < 4)
             {
                 this.mood = Mood.Bored;
+                return;
             }
             else if (this.hygene.GetPoints() < 4)
             {
                 this.mood = Mood.Disgusted;
+                return;
             }
             else
             {
