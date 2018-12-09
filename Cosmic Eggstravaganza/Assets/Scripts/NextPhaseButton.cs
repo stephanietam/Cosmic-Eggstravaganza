@@ -87,8 +87,8 @@ public class NextPhaseButton : MonoBehaviour {
                     { 10, "Boomlegs" },
                     { 11, "Nomclopse" },
                     { 12, "Emobird" } };
-                System.Random random = new System.Random();
-                int randomImageInt = random.Next(0, 13);
+
+                int randomImageInt = Random.Range(0,13);
                 creature.name = speciesName[randomImageInt] + " " + ++this.gameState.speciesCount[randomImageInt];
 
                 Texture2D tex = Resources.Load<Texture2D>(imageFiles[randomImageInt]) as Texture2D;
@@ -202,8 +202,7 @@ public class NextPhaseButton : MonoBehaviour {
                 energy.AddPoints(1);
             }
             if (creature.location == Area.Gym){
-                System.Random random = new System.Random();
-                int randomStat = random.Next(0, 3);
+                int randomStat = Random.Range(0, 3);
                 if (randomStat == 0)
                 {
                     strength.AddPoints(2);

@@ -164,6 +164,12 @@ public class PetLibrary : MonoBehaviour {
             Transform transform = this.displayPet.GetComponent<Transform>();
             Vector3 scale = new Vector3(0.15f, 0.15f, 1f);
             transform.localScale = scale;
+
+            // Reset medicine button
+            if (creature.HasHatched() || gameState.GetMedicine() > 0 || creature.mood == Mood.Sick)
+            {
+                medicineButton.interactable = true;
+            }
         }
     }
 
