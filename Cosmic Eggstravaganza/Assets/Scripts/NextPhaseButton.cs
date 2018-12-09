@@ -182,11 +182,15 @@ public class NextPhaseButton : MonoBehaviour {
             amusement.LosePoints(1);
 
             if (creature.location == Area.Stable){
-                if (this.gameState.GetFood() > 0){
+                energy.AddPoints(4);
+            }
+            if (creature.location == Area.Eat)
+            {
+                if (this.gameState.GetFood() > 0)
+                {
                     this.gameState.AddFood(-1);
                     hunger.AddPoints(4);
                 }
-                energy.AddPoints(4);
             }
             if (creature.location == Area.Clean){
                 hygene.AddPoints(4);

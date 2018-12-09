@@ -64,8 +64,12 @@ public class DragDropScript : MonoBehaviour {
 				if (hit.transform != null)
 				{
 					draggingObject = true;
-                    dragAudio.Play();
+                    
                     obj = hit.transform.gameObject;
+                    if (obj.GetComponent<Creature>()!=null)
+                    {
+                        dragAudio.Play();
+                    }
 					prevObjPos = obj.transform.position;
 					//obj.transform.localScale = new Vector3(1f,1f,1f);
 				}
@@ -74,11 +78,13 @@ public class DragDropScript : MonoBehaviour {
 				}
 			}
 		}
-        
     }
 
 	void Drop() {
-        dropAudio.Play();
+        if (obj.GetComponent<Creature>() != null)
+        {
+            dropAudio.Play();
+        }
         draggingObject = false;
 		if (areaTracker.activeArea == Area.None) {
 			obj.transform.position = prevObjPos;
