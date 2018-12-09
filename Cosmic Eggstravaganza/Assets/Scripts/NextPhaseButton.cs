@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NextPhaseButton : MonoBehaviour {
@@ -31,6 +32,7 @@ public class NextPhaseButton : MonoBehaviour {
             for (int i = 0; i < creatureObjects.Count; ++i)
             {
                 Creature creature = creatureObjects[i].GetComponent<Creature>();
+                
                 // change stats
                 ChangeCreatureStats(creature);
 
@@ -49,10 +51,18 @@ public class NextPhaseButton : MonoBehaviour {
             }
         }
 
-        // Set time of day
-        NextDateTime();
-
         // check for eggs to hatch
+        CheckEggs();
+
+        // check for game over
+        CheckLostGame();
+
+        // set time of day
+        NextDateTime();
+    }
+
+    private void CheckEggs()
+    {
         for (int i = 0; i < this.gameState.creatureCount; ++i)
         {
             GameObject creatureObject = this.gameState.creatureObjects[i];
@@ -89,7 +99,7 @@ public class NextPhaseButton : MonoBehaviour {
         }
     }
 
-    public void CheckDeath(GameObject creature, List<GameObject> deadCreatures)
+    private void CheckDeath(GameObject creature, List<GameObject> deadCreatures)
     {
         Creature c = creature.GetComponent<Creature>();
         if (c.GetHunger().GetPoints() <= 0)
@@ -137,7 +147,7 @@ public class NextPhaseButton : MonoBehaviour {
         }
     }
 
-    public void ChangeCreatureStats(Creature creature)
+    private void ChangeCreatureStats(Creature creature)
     {
         if (creature.HasHatched())
         {
@@ -193,12 +203,20 @@ public class NextPhaseButton : MonoBehaviour {
         creature.age += 1;
     }
 
-    public void NextDateTime()
+    private void NextDateTime()
     {
         DateTime dateTime = gameState.GetDateTime();
         dateTime.NextPhase();
 
         dateTimeText.text = dateTime.ToString();
         //Debug.Log(dateTimeText.text);
+    }
+
+    private void CheckLostGame()
+    {
+        if (gameState.creatureCount <= 0 && gameState.GetStars() < 100 && gameState.deadCreatures.Count <= 0)
+        {
+            SceneManager.LoadScene("LostScene");
+        }
     }
 }

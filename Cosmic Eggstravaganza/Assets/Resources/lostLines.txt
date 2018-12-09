@@ -1,0 +1,2 @@
+﻿You ran out of stars and can't buy anymore creatures to raise. You are now stuck forever in space.
+Game over.

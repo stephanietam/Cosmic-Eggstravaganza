@@ -2198,7 +2198,7 @@ GameObject:
   - component: {fileID: 1469318918}
   - component: {fileID: 1469318917}
   m_Layer: 0
-  m_Name: MorningImage
+  m_Name: Background
   m_TagString: MorningImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
