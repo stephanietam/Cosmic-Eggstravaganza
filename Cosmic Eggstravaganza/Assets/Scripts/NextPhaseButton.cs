@@ -72,7 +72,7 @@ public class NextPhaseButton : MonoBehaviour {
                 creature.Hatch();
 
                 // Set new image of pet
-                List<string> imageFiles = new List<string> { "1", "2", "3", "4", "5", "6a", "6b", "6c", "7", "8", "9", "10", "11" };
+                List<string> imageFiles = new List<string> { "1", "2", "3", "4", "5", "6a", "6b", "6c", "7", "8", "9", "10", "11", "12" };
                 Dictionary<int,string> speciesName = new Dictionary<int, string>() {
                     { 0, "Plump Man" },
                     { 1, "Dropling" },
@@ -86,9 +86,10 @@ public class NextPhaseButton : MonoBehaviour {
                     { 9, "Alpacorn" },
                     { 10, "Boomlegs" },
                     { 11, "Nomclopse" },
-                    { 12, "Emobird" } };
+                    { 12, "Emobird" },
+                    { 13, "Fluffny"} };
 
-                int randomImageInt = Random.Range(0,13);
+                int randomImageInt = Random.Range(0,14);
                 creature.name = speciesName[randomImageInt] + " " + ++this.gameState.speciesCount[randomImageInt];
 
                 Texture2D tex = Resources.Load<Texture2D>(imageFiles[randomImageInt]) as Texture2D;
