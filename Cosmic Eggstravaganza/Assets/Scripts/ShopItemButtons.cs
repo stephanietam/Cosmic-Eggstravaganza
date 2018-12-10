@@ -24,6 +24,8 @@ public class ShopItemButtons : MonoBehaviour
 
     public Text ownFood;
 
+	public bool purchaseFail;
+
     // Use this for initialization
     void Start()
     {
@@ -40,6 +42,7 @@ public class ShopItemButtons : MonoBehaviour
         this.ownEggs.text = "Pet Count: " + this.gameState.creatureCount;
         this.ownFood.text = "Own: " + this.gameState.GetFood();
         this.ownMedicine.text = "Own: " + this.gameState.GetMedicine();
+		this.purchaseFail = false;
     }
 
     private void Update()
@@ -62,6 +65,7 @@ public class ShopItemButtons : MonoBehaviour
         else
         {
             // pop up warning
+			purchaseFail = true;
             Popup("You don't have enough stars!");
         }
     }
@@ -78,6 +82,7 @@ public class ShopItemButtons : MonoBehaviour
         }
         else
         {
+			this.purchaseFail = true;
             Popup("You don't have enough stars!");
         }
     }
@@ -94,6 +99,7 @@ public class ShopItemButtons : MonoBehaviour
         }
         else
         {
+			this.purchaseFail = true;
             Popup("You don't have enough stars!");
         }
     }
@@ -108,6 +114,7 @@ public class ShopItemButtons : MonoBehaviour
 		}
 		else
 		{
+			this.purchaseFail = true;
 			Popup("You don't have enough stars!");
 		}
 	}
