@@ -15,6 +15,7 @@ public class IntroNextButton : MonoBehaviour {
     public GameObject IntroImage1;
     public GameObject IntroImage2;
     public GameObject IntroImage3;
+	public IntroAudioScript audio;
 
     public void Start()
     {
@@ -32,6 +33,7 @@ public class IntroNextButton : MonoBehaviour {
         if (index == 8){
           IntroImage1.SetActive(false);
           IntroImage2.SetActive(true);
+		  audio.Explosion();
         }
         if (index == 9){
           IntroImage2.SetActive(false);

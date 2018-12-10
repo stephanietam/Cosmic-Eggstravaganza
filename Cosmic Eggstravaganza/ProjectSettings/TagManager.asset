@@ -10,6 +10,9 @@ TagManager:
   - NightImage
   - AreaImage
   - BG Audio
+  - Shop Item Buttons
+  - Purchase Audio
+  - Purchase Fail Audio
   layers:
   - Default
   - TransparentFX
